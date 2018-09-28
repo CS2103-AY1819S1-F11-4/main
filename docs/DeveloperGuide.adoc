@@ -430,7 +430,7 @@ Use case resumes at step 2.
 ** 4a1.System shows an error message.
 +
 Use case ends.
-* 5a. User does not confirm the deletion of the friend 
+* 5a. User does not confirm the deletion of the friend.
 +
 Use case ends.
 [discrete]
@@ -455,7 +455,7 @@ Use case resumes at step 2.
 ** 4a1.System shows an error message.
 +
 Use case resumes at step 2.
-* 5a. User does not confirm the editing of the friend 
+* 5a. User does not confirm the editing of the friend.
 +
 Use case ends.
 [discrete]
@@ -486,7 +486,7 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 * 4a.User does not confirm the addition of the timetable into the System.
-+ 
++
 Use case ends
 [discrete]
 === Use case: Find timetable by Name
@@ -620,7 +620,7 @@ Use case resumes at step 2.
 ** 4a1.System shows an error message.
 +
 Use case ends.
-* 5a. User does not confirm the deletion of the group 
+* 5a. User does not confirm the deletion of the group.
 +
 Use case ends.
 [discrete]
@@ -696,7 +696,7 @@ Use case resumes at step 3.
 [none]
 ** 4a1.System shows an error message.
 +
-** 4a2. User prompted to login again 
+** 4a2. User prompted to login again.
 +
 Use case resumes at step 4.
 [discrete]
