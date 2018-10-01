@@ -10,7 +10,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 == Project Team
 
-=== Happytreat
+=== Sim Ming Hui Melodies
 image::Happytreat.jpeg[width="150", align="left"]
 {empty}[http://github.com/happytreat[github]] [<<johndoe#, portfolio>>]
 
@@ -19,7 +19,7 @@ Responsibilities:
 
 '''
 
-=== ZhiWei94
+=== Tan Zhi Wei
 image::zhiwei94.jpeg[width="150", align="left"]
 {empty}[http://github.com/ZhiWei94[github]] [<<johndoe#, portfolio>>]
 
@@ -28,7 +28,7 @@ Responsibilities:
 
 '''
 
-=== souless94
+=== Chia Wen Kai
 image::souless94.jpeg[width="150", align="left"]
 {empty}[http://github.com/souless94[github]] [<<johndoe#, portfolio>>]
 
@@ -37,14 +37,14 @@ Responsibilities:
 
 '''
 
-=== aspiringdevslog
+=== Tang Wee Jie Leslie
 image::aspiringdevslog.jpeg[width="150", align="left"]
 {empty}[http://github.com/aspiringdevslog[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
 Responsibilities:
 
-=== nigelngyy
+=== Ng Yuan Yun Nigel
 image::nigelngyy.jpeg[width="150", align="left"]
 {empty}[http://github.com/nigelngyy[github]] [<<johndoe#, portfolio>>]
 
