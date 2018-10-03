@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -169,14 +170,34 @@ public class ParserUtil {
     }
 
     /**
+     *
+     * @param mode
+     * @return
+     * @throws ParseException
+     */
+    public static String parseMode(String mode) throws ParseException {
+        requireNonNull(mode);
+        if(mode.equals("new")|| mode.equals("existing")) {
+            return mode;
+        }
+        else{
+            throw new ParseException("mode can only be new or exist");
+        }
+    }
+
+    /**
      * Parses a {@code String mode} into an {@code String Mode}. Leading and trailing whitespaces will be
      * trimmed.
      *
      * @throws ParseException if the given {@code mode} is invalid.
      */
-    public static String parseMode(String mode) throws ParseException {
-        requireNonNull(mode);
-
-        return mode;
+    public static String parseFormat(String format) throws ParseException {
+        requireNonNull(format);
+        if (format.equals("horizontal") || format.equals("vertical")){
+            return format;
+        }
+        else{
+            throw new ParseException("format can only be horizontal or vertical");
+        }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.Entity;
+import seedu.address.model.person.timetable.Timetable;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person extends Entity {
 
     // Data fields
     private final Address address;
+    private final Timetable timetable;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,6 +37,24 @@ public class Person extends Entity {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.timetable= new Timetable("horizontal");
+    }
+
+    /**
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param timetable
+     */
+    public Person(Name name, Phone phone, Email email, Address address,Set<Tag> tags,
+        Timetable timetable) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.timetable = timetable;
     }
 
     public Name getName() {
@@ -52,6 +72,8 @@ public class Person extends Entity {
     public Address getAddress() {
         return address;
     }
+
+    public Timetable getTimetable(){return timetable;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
