@@ -238,7 +238,7 @@ public class TimetableData {
      * @return a string matrix of a timetable
      */
     public String[][] getTimetable() {
-        return timetable;
+        return this.timetable;
     }
 
     /**
