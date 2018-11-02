@@ -55,7 +55,7 @@
 </li>
 <li><a href="#time-slots-nigel">8. Time slots (Nigel)</a>
 <ul class="sectlevel2">
-<li><a href="#list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_everyone-code">8.1. List all time slots of a group at which everyone is available : <code>view_slots_everyone</code></a></li>
+<li><a href="#list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_all-code">8.1. List all time slots of a group at which everyone is available : <code>view_slots_all</code></a></li>
 <li><a href="#list-all-time-slots-of-a-group-in-descending-order-of-availability-code-view_slots_ranked-code">8.2. List all time slots of a group in descending order of availability: <code>view_slots_ranked</code></a></li>
 </ul>
 </li>
@@ -571,7 +571,7 @@ Format: <code>clear</code></p>
 <h3 id="adding-a-timetable-code-add_timetable-code"><a class="link" href="#adding-a-timetable-code-add_timetable-code">6.1. Adding a timetable: <code>add_timetable</code></a></h3>
 <div class="paragraph">
 <p>User to download timetable template first before using download_timetable INDEX and change csv at the location.<br>
-Reload page by clicking on another person and then click again<br>
+Reload page by clicking on another person and then click on the person again<br>
 Or right click on timetable and select the reload page option.</p>
 </div>
 <div class="paragraph">
@@ -986,17 +986,17 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 <h2 id="time-slots-nigel"><a class="link" href="#time-slots-nigel">8. Time slots (Nigel)</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_everyone-code"><a class="link" href="#list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_everyone-code">8.1. List all time slots of a group at which everyone is available : <code>view_slots_everyone</code></a></h3>
+<h3 id="list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_all-code"><a class="link" href="#list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_all-code">8.1. List all time slots of a group at which everyone is available : <code>view_slots_all</code></a></h3>
 <div class="paragraph">
 <p>List all of the available time slots in a group<br>
-Format: `view_slots_everyone n/GROUP_NAME `</p>
+Format: `view_slots_all n/GROUP_NAME `</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>List all time slots in a group at which everyone is available at the specified <code>GROUPNAME</code></p>
+<p>List all time slots in a group at which all person in the group is available at the specified <code>GROUPNAME</code></p>
 </li>
 </ul>
 </div>
@@ -1008,7 +1008,7 @@ Format: `view_slots_everyone n/GROUP_NAME `</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>view_slots_everyone n/happyfriends</code></p>
+<p><code>view_slots_all n/happyfriends</code></p>
 </li>
 </ul>
 </div>
@@ -1073,6 +1073,9 @@ Format: <code>create u/USERNAME pw/PASSWORD</code></p>
 <div class="paragraph">
 <p>Create an account in the system. The password and security answer are both case sensitive.<br>
 Format: <code>create u/USERNAME pw/PASSWORD</code></p>
+</div>
+<div class="paragraph">
+<p>(Coming soon: Stores account details after closing and reopening app)</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1306,4 +1309,4 @@ e.g. <code>update_pw c/password n/why me? a/because it is cs2103</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 01:52:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 01:58:19 UTC</div></div></div></body></html>
