@@ -1057,8 +1057,10 @@ A person can have any number of tags (including 0)
 </ul>
 </div>
 <div class="paragraph">
-<p>== Security (Leslie)
-=== Create an account: <code>create</code></p>
+<p>== Security (Leslie)</p>
+</div>
+<div class="paragraph">
+<p>=== Create an account: <code>create</code></p>
 </div>
 <div class="paragraph">
 <p>Create an account in the system. The password and security answer are both case sensitive.<br>
@@ -1096,7 +1098,7 @@ Format: <code>create u/USERNAME pw/PASSWORD</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>=== login to an account : <code>login</code>
+<p>=== Login to an account : <code>login</code>
 Login into the system.<br>
 Users are required to login to execute most commands of the NUS Hangs</p>
 </div>
@@ -1199,63 +1201,125 @@ Format: <code>update_sq c/CURRENT_PASSWORD [n/NEWSECURITY_QUESTION]  [a/SECURITY
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
 <div class="paragraph">
-<p>== Command Summary
-* <strong>help</strong> : <code>help</code>
-* <strong>add</strong>: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
-e.g. <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code>
-* <strong>edit</strong>: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [fl/STORED_LOCATION] [t/TAG]…</code><br>
-e.g. <code>edit 1 p/91234567 e/johndoe@example.com</code>
-* <strong>find</strong>: <code>find [n/NAME…] [p/PHONE_NUMBER…] [e/EMAIL…] [a/ADDRESS…] [t/TAG…]</code><br>
-e.g. <code>find a/tampines p/12345678 87654321</code>
-* <strong>delete</strong>: <code>delete INDEX</code><br>
-e.g. <code>delete 1</code>
-* <strong>list</strong>: Listing all persons<br>
-eg. <code>list</code>
-* <strong>list PERSON_INDEX</strong>: List all the groups the person is in<br>
-e.g. <code>list 1</code>
-* <strong>undo</strong>
-* <strong>redo</strong>
-* <strong>history</strong>: Lists all the commands that you have entered in reverse chronological order.
-* <strong>add_timetable</strong>: <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
-e.g. <code>add_timetable 1</code>
-* <strong>edit_timetable</strong>: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
-e.g. <code>edit_timetable 1 day/wednesday timing/1800 m/do cs2103</code>
-* <strong>download_timetable</strong> : <code>download_timetable INDEX</code><br>
-e.g. <code>download_timetable 1 l/C://Users/abc/mysecretstash</code>
-* <strong>delete_timetable</strong> : <code>delete INDEX p/password</code><br>
-e.g. <code>delete_timetable 3 p/password</code>
-* <strong>add_group</strong>: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]`</code><br>
-e.g. <code>add_group n/happyfriends d/a group of happy friends</code>
-* <strong>edit_group</strong> : <code>edit_group OLDGROUPNAME [n/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION]</code><br>
-e.g. <code>edit_group happyfriends n/sadfriends d/sad because of cs2103</code>
-* <strong>find_group</strong> : <code>find_group KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find_group Family Friends</code>
-* <strong>delete_group</strong> : <code>delete n/GROUPNAMR</code><br>
-e.g. <code>delete_group Family</code>
-* <strong>view_group</strong> : View a group&#8217;s members <code>view_group n/GROUPNAME</code>+
-e.g. <code>view_group Family</code>
-* <strong>register</strong> <code>register PERSON_INDEX n/GROUP_NAME</code><br>
-e.g. <code>register 1 n/Family</code>
-* <strong>delete_member</strong>: Always use view_group before doing delete_member<br>
+<p>== Command Summary</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>add</strong>: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
+e.g. <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><strong>edit</strong>: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [fl/STORED_LOCATION] [t/TAG]…</code><br>
+e.g. <code>edit 1 p/91234567 e/johndoe@example.com</code></p>
+</li>
+<li>
+<p><strong>find</strong>: <code>find [n/NAME…] [p/PHONE_NUMBER…] [e/EMAIL…] [a/ADDRESS…] [t/TAG…]</code><br>
+e.g. <code>find a/tampines p/12345678 87654321</code></p>
+</li>
+<li>
+<p><strong>delete</strong>: <code>delete INDEX</code><br>
+e.g. <code>delete 1</code></p>
+</li>
+<li>
+<p><strong>list</strong>: Listing all persons<br>
+eg. <code>list</code></p>
+</li>
+<li>
+<p><strong>list PERSON_INDEX</strong>: List all the groups the person is in<br>
+e.g. <code>list 1</code></p>
+</li>
+<li>
+<p><strong>undo</strong></p>
+</li>
+<li>
+<p><strong>redo</strong></p>
+</li>
+<li>
+<p><strong>history</strong>: Lists all the commands that you have entered in reverse chronological order.</p>
+</li>
+<li>
+<p><strong>add_timetable</strong>: <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
+e.g. <code>add_timetable 1</code></p>
+</li>
+<li>
+<p><strong>edit_timetable</strong>: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
+e.g. <code>edit_timetable 1 day/wednesday timing/1800 m/do cs2103</code></p>
+</li>
+<li>
+<p><strong>download_timetable</strong> : <code>download_timetable INDEX</code><br>
+e.g. <code>download_timetable 1 l/C://Users/abc/mysecretstash</code></p>
+</li>
+<li>
+<p><strong>delete_timetable</strong> : <code>delete INDEX p/password</code><br>
+e.g. <code>delete_timetable 3 p/password</code></p>
+</li>
+<li>
+<p><strong>add_group</strong>: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]`</code><br>
+e.g. <code>add_group n/happyfriends d/a group of happy friends</code></p>
+</li>
+<li>
+<p><strong>edit_group</strong> : <code>edit_group OLDGROUPNAME [n/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION]</code><br>
+e.g. <code>edit_group happyfriends n/sadfriends d/sad because of cs2103</code></p>
+</li>
+<li>
+<p><strong>find_group</strong> : <code>find_group KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>find_group Family Friends</code></p>
+</li>
+<li>
+<p><strong>delete_group</strong> : <code>delete n/GROUPNAMR</code><br>
+e.g. <code>delete_group Family</code></p>
+</li>
+<li>
+<p><strong>view_group</strong> : View a group&#8217;s members <code>view_group n/GROUPNAME</code>+
+e.g. <code>view_group Family</code></p>
+</li>
+<li>
+<p><strong>register</strong> <code>register PERSON_INDEX n/GROUP_NAME</code><br>
+e.g. <code>register 1 n/Family</code></p>
+</li>
+<li>
+<p><strong>delete_member</strong>: Always use view_group before doing delete_member<br>
 <code>delete_member PERSON_INDEX n/GROUP_NAME</code><br>
 e.g. <code>view_group n/Family</code><br>
-<code>delete_member 1 n/Family</code>
-* <strong>view_slots_all</strong>: <code>view_slots_all n/GROUP_NAME</code>
-* <strong>view_slots_ranked</strong>: <code>view_slots_ranked n/GROUP_NAME</code>
-* <strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
-e.g. <code>create u/user pw/strongpass</code>
-* <strong>login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
-e.g. <code>login u/user pw/strongpass</code>
-* <strong>update_pw</strong> : <code>update_pw c/CURRENT_PASSWORD n/NEW_PASSWORD</code><br>
-e.g. <code>update_pw c/password n/newpass</code>
-* <strong>get</strong> : <code>get</code>
-* <strong>reset</strong> : <code>reset a/SECURITY_ANSWER n/NEW_PASSWORD</code><br>
-e.g. <code>reset a/SECURITY_ANSWER n/NEW_PASSWORD</code>
-* <strong>update_sq</strong> : <code>update_sq c/CURRENT_PASSWORD [n/NEWSECURITY_QUESTION]  [a/SECURITY_ANSWER]</code><br>
+<code>delete_member 1 n/Family</code></p>
+</li>
+<li>
+<p><strong>view_slots_all</strong>: <code>view_slots_all n/GROUP_NAME</code></p>
+</li>
+<li>
+<p><strong>view_slots_ranked</strong>: <code>view_slots_ranked n/GROUP_NAME</code></p>
+</li>
+<li>
+<p><strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>create u/user pw/strongpass</code></p>
+</li>
+<li>
+<p><strong>login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>login u/user pw/strongpass</code></p>
+</li>
+<li>
+<p><strong>update_pw</strong> : <code>update_pw c/CURRENT_PASSWORD n/NEW_PASSWORD</code><br>
+e.g. <code>update_pw c/password n/newpass</code></p>
+</li>
+<li>
+<p><strong>get</strong> : <code>get</code></p>
+</li>
+<li>
+<p><strong>reset</strong> : <code>reset a/SECURITY_ANSWER n/NEW_PASSWORD</code><br>
+e.g. <code>reset a/SECURITY_ANSWER n/NEW_PASSWORD</code></p>
+</li>
+<li>
+<p><strong>update_sq</strong> : <code>update_sq c/CURRENT_PASSWORD [n/NEWSECURITY_QUESTION]  [a/SECURITY_ANSWER]</code><br>
 e.g. <code>update_pw c/password n/why me? a/because it is cs2103</code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 05:11:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 05:13:45 UTC</div></div></div></body></html>
