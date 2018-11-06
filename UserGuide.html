@@ -19,13 +19,13 @@
 <li><a href="#saving-the-data">4.3. Saving the data</a></li>
 </ul>
 </li>
-<li><a href="#person-zhi-wei">5. Person (Zhi Wei)</a>
+<li><a href="#person">5. Person</a>
 <ul class="sectlevel2">
 <li><a href="#adding-a-person-code-add-code">5.1. Adding a person: <code>add</code></a></li>
 <li><a href="#listing-all-persons-code-list-code">5.2. Listing all persons : <code>list</code></a></li>
 <li><a href="#listing-all-groups-a-person-is-in-code-list-code-melodies">5.3. Listing all groups a person is in : <code>list</code> (Melodies)</a></li>
 <li><a href="#editing-a-person-code-edit-code">5.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#finding-a-person-code-find-code">5.5. Finding a person : <code>find</code></a></li>
+<li><a href="#finding-a-person-code-find-code-zhiwei">5.5. Finding a person : <code>find</code> (ZhiWei)</a></li>
 <li><a href="#deleting-a-person-code-delete-code">5.6. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">5.7. Selecting a person : <code>select</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">5.8. Listing entered commands : <code>history</code></a></li>
@@ -37,7 +37,7 @@
 <li><a href="#timetable-wen-kai">6. Timetable(Wen Kai)</a>
 <ul class="sectlevel2">
 <li><a href="#adding-a-timetable-code-add_timetable-code">6.1. Adding a timetable: <code>add_timetable</code></a></li>
-<li><a href="#editing-a-timetable-code-edit_timetable-code">6.2. editing a timetable: <code>edit_timetable</code></a></li>
+<li><a href="#editing-a-timetable-code-edit_timetable-code">6.2. Editing a timetable: <code>edit_timetable</code></a></li>
 <li><a href="#download-timetable-code-download_timetable-code">6.3. Download timetable : <code>download_timetable</code></a></li>
 <li><a href="#deleting-a-timetable-code-delete_timetable-code">6.4. Deleting a timetable : <code>delete_timetable</code></a></li>
 </ul>
@@ -192,7 +192,7 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="person-zhi-wei"><a class="link" href="#person-zhi-wei">5. Person (Zhi Wei)</a></h2>
+<h2 id="person"><a class="link" href="#person">5. Person</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">5.1. Adding a person: <code>add</code></a></h3>
@@ -323,7 +323,7 @@ Edits the stored location of the 1st person to be <code>C:/Users/admin/Downloads
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-a-person-code-find-code"><a class="link" href="#finding-a-person-code-find-code">5.5. Finding a person : <code>find</code></a></h3>
+<h3 id="finding-a-person-code-find-code-zhiwei"><a class="link" href="#finding-a-person-code-find-code-zhiwei">5.5. Finding a person : <code>find</code> (ZhiWei)</a></h3>
 <div class="paragraph">
 <p>Finds all persons in NusHangs, whose contain keywords provided by prefix(es).<br>
 Format: <code>find [n/NAME&#8230;&#8203;] [p/PHONE_NUMBER&#8230;&#8203;] [e/EMAIL&#8230;&#8203;] [a/ADDRESS&#8230;&#8203;] [t/TAG&#8230;&#8203;]</code></p>
@@ -358,7 +358,7 @@ Format: <code>find [n/NAME&#8230;&#8203;] [p/PHONE_NUMBER&#8230;&#8203;] [e/EMAI
 <ul>
 <li>
 <p><code>find n/alex</code><br>
-Returns any person having names <code>Alex Yeoh</code></p>
+Returns any person having names with <code>alex</code></p>
 </li>
 <li>
 <p><code>find n/Betsy Tim John</code><br>
@@ -621,7 +621,7 @@ Or right click on timetable and select the reload page option.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">6.2. editing a timetable: <code>edit_timetable</code></a></h3>
+<h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">6.2. Editing a timetable: <code>edit_timetable</code></a></h3>
 <div class="paragraph">
 <p>Edits a timetable timeslot of the timetable from the person specified by the <code>INDEX</code>.<br>
 Format: `add_timetable INDEX day/DAY timing/TIMING [m/DETAILS]  `</p>
@@ -816,19 +816,16 @@ Format: <code>find_group KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>family</code> will match <code>Family</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>Only the group name is searched.</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Only full words will be matched e.g. <code>Family</code> will not match <code>Families</code></p>
 </li>
 </ul>
 </div>
@@ -1211,36 +1208,44 @@ Format: <code>update_sq c/CURRENT_PASSWORD [n/NEWSECURITY_QUESTION]  [a/SECURITY
 <p><strong>help</strong> : <code>help</code></p>
 </li>
 <li>
-<p><strong>Add_friend</strong> <code>add_friend n/NAME_OF_FRIEND [t/TEXT_FILE l/TEXT_FILE_LOCATION] [i/INDEX_OF_TIMETABLE]</code><br>
-e.g. <code>add u/Damith C. Rajapakse [i/1] [t/friends.txt l/C://Users/abc/mysecretstash]</code></p>
+<p><strong>add</strong>: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
+e.g. <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
 </li>
 <li>
-<p><strong>list_friends</strong> : <code>list_friends</code></p>
+<p><strong>edit</strong>: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [fl/STORED_LOCATION] [t/TAG]…</code><br>
+e.g. <code>edit 1 p/91234567 e/johndoe@example.com</code></p>
 </li>
 <li>
-<p><strong>edit_friend</strong> : <code>edit_friend [n/NEW_NAME] i/INDEX_OF_FRIEND [t/TIMETABLE_INDEX]</code><br>
-e.g. <code>edit_friend [n/iamgod] i/1 [t/1]</code></p>
+<p><strong>find</strong>: <code>find [n/NAME…] [p/PHONE_NUMBER…] [e/EMAIL…] [a/ADDRESS…] [t/TAG…]</code><br>
+e.g. <code>find a/tampines p/12345678 87654321</code></p>
 </li>
 <li>
-<p><strong>find_friend</strong> : <code>find_friend  KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find_friend James Jake</code></p>
+<p><strong>delete</strong>: <code>delete INDEX</code><br>
+e.g. <code>delete 1</code></p>
 </li>
 <li>
-<p><strong>delete_friend</strong> : <code>delete i/INDEX_OF_FRIEND</code><br>
-e.g. <code>delete_friend 3</code></p>
+<p><strong>list</strong>: Listing all persons<br>
+eg. <code>list</code></p>
 </li>
 <li>
-<p><strong>clear_friend</strong> : <code>clear_friend</code></p>
+<p><strong>list PERSON_INDEX</strong>: List all the groups the person is in<br>
+e.g. <code>list 1</code></p>
 </li>
 <li>
-<p><strong>grouplist</strong> : <code>listgroup</code></p>
+<p><strong>undo</strong></p>
 </li>
 <li>
-<p><strong>add_timetable</strong> <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
+<p><strong>redo</strong></p>
+</li>
+<li>
+<p><strong>history</strong>: Lists all the commands that you have entered in reverse chronological order.</p>
+</li>
+<li>
+<p><strong>add_timetable</strong>: <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
 e.g. <code>add_timetable 1</code></p>
 </li>
 <li>
-<p><strong>edit_timetable</strong> <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
+<p><strong>edit_timetable</strong>: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
 e.g. <code>edit_timetable 1 day/wednesday timing/1800 m/do cs2103</code></p>
 </li>
 <li>
@@ -1252,38 +1257,43 @@ e.g. <code>download_timetable 1 l/C://Users/abc/mysecretstash</code></p>
 e.g. <code>delete_timetable 3 p/password</code></p>
 </li>
 <li>
-<p><strong>add_group</strong> <code>add_group g/GROUPNAME d/GROUPDESCRIPTION m/MAXNUMBEROFPEOPLE</code><br>
-e.g. <code>add_group g/happyfriends d/a group of happy friends m/3</code></p>
+<p><strong>add_group</strong>: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]`</code><br>
+e.g. <code>add_group n/happyfriends d/a group of happy friends</code></p>
 </li>
 <li>
-<p><strong>list_groups</strong> : <code>list_groups</code></p>
+<p><strong>edit_group</strong> : <code>edit_group OLDGROUPNAME [n/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION]</code><br>
+e.g. <code>edit_group happyfriends n/sadfriends d/sad because of cs2103</code></p>
 </li>
 <li>
-<p><strong>edit_group</strong> : <code>edit_group i/GROUPINDEX [g/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION] [m/NEWMAXNUMBEROFPEOPLE]  [s/STATUS]</code><br>
-e.g. <code>edit_group i/1 g/sadfriends d/sad because of cs2103 s/closed</code></p>
+<p><strong>find_group</strong> : <code>find_group KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>find_group Family Friends</code></p>
 </li>
 <li>
-<p><strong>find_group</strong> : <code>find_friend  KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find_group James Jake</code></p>
-</li>
-<li>
-<p><strong>delete_group</strong> : <code>delete i/INDEX_OF_FRIEND</code><br>
-e.g. <code>delete_group 3</code></p>
+<p><strong>delete_group</strong> : <code>delete n/GROUPNAMR</code><br>
+e.g. <code>delete_group Family</code></p>
 </li>
 <li>
 <p><strong>clear_groups</strong> : <code>clear_groups</code></p>
 </li>
 <li>
-<p><strong>viewgroup</strong> : <code>view_group i/GROUP_INDEX</code>+
-e.g. <code>viewgroup 3</code></p>
+<p><strong>view_group</strong> : View a group&#8217;s members <code>view_group n/GROUPNAME</code>+
+e.g. <code>view_group Family</code></p>
 </li>
 <li>
-<p><strong>register</strong> <code>register f/FRIEND_INDEX g/GROUP_INDEX</code><br>
-e.g. `register f/1 g/1`cr</p>
+<p><strong>register</strong> <code>register PERSON_INDEX n/GROUP_NAME</code><br>
+e.g. <code>register 1 n/Family</code></p>
 </li>
 <li>
-<p><strong>find_time</strong> : <code>find k/KTH_BEST g/GROUPINDEX</code><br>
-e.g. <code>find k/1 g/1</code></p>
+<p><strong>delete_member</strong>: Always use view_group before doing delete_member<br>
+<code>delete_member PERSON_INDEX n/GROUP_NAME</code><br>
+e.g. <code>view_group n/Family</code><br>
+<code>delete_member 1 n/Family</code></p>
+</li>
+<li>
+<p><strong>view_slots_all</strong>: <code>view_slots_all n/GROUP_NAME</code></p>
+</li>
+<li>
+<p><strong>view_slots_ranked</strong>: <code>view_slots_ranked n/GROUP_NAME</code></p>
 </li>
 <li>
 <p><strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
@@ -1311,4 +1321,4 @@ e.g. <code>update_pw c/password n/why me? a/because it is cs2103</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-03 09:26:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 05:00:45 UTC</div></div></div></body></html>
