@@ -21,7 +21,7 @@
 </li>
 <li><a href="#person">5. Person</a>
 <ul class="sectlevel2">
-<li><a href="#adding-a-person-code-add-code">5.1. Adding a person: <code>add</code></a></li>
+<li><a href="#adding-a-person-code-add-code-zhiwei">5.1. Adding a person: <code>add</code> (ZhiWei)</a></li>
 <li><a href="#listing-all-persons-code-list-code">5.2. Listing all persons : <code>list</code></a></li>
 <li><a href="#listing-all-groups-a-person-is-in-code-list-code-melodies">5.3. Listing all groups a person is in : <code>list</code> (Melodies)</a></li>
 <li><a href="#editing-a-person-code-edit-code">5.4. Editing a person : <code>edit</code></a></li>
@@ -190,11 +190,17 @@ There is no need to save manually.</p>
 <h2 id="person"><a class="link" href="#person">5. Person</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">5.1. Adding a person: <code>add</code></a></h3>
+<h3 id="adding-a-person-code-add-code-zhiwei"><a class="link" href="#adding-a-person-code-add-code-zhiwei">5.1. Adding a person: <code>add</code> (ZhiWei)</a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code>
-* Inputs in square brackets are optional</p>
+Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Inputs in square brackets are optional</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -220,10 +226,10 @@ A person can have any number of tags (including 0)
 <p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
 </li>
 <li>
-<p><code>add n/Nancy t/friend</code></p>
+<p><code>add n/Nancy t/friend t/neighbour</code></p>
 </li>
 <li>
-<p><code>add n/James  t/friend e/betsycrowe@example.com t/criminal</code></p>
+<p><code>add n/James t/friend e/james@example.com t/classmates</code></p>
 </li>
 </ul>
 </div>
@@ -326,6 +332,18 @@ Edits the stored location of the 1st person to be <code>C:/Users/admin/Downloads
 <p>Finds all persons in NusHangs, whose contain keywords provided by prefix(es).<br>
 Format: <code>find [n/NAME&#8230;&#8203;] [p/PHONE_NUMBER&#8230;&#8203;] [e/EMAIL&#8230;&#8203;] [a/ADDRESS&#8230;&#8203;] [t/TAG&#8230;&#8203;]</code></p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Inputs in square brackets are optional
+</td>
+</tr>
+</table>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -343,7 +361,8 @@ Format: <code>find [n/NAME&#8230;&#8203;] [p/PHONE_NUMBER&#8230;&#8203;] [e/EMAI
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search).<br>
+e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code> and <code>Bo Yang</code></p>
 </li>
 </ul>
 </div>
@@ -364,11 +383,11 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </li>
 <li>
 <p><code>find n/alex bernice t/friends</code><br>
-Returns any person having <code>alex</code> and 'bernice' in name and <code>friends</code> in tags</p>
+Returns any person having <code>alex</code> and <code>bernice</code> in name and <code>friends</code> in tags</p>
 </li>
 <li>
 <p><code>find a/tampines p/12345678 87654321</code><br>
-Returns any person having <code>Tampines</code> in address and '12345678' &amp; '87654321' in phone</p>
+Returns any person having <code>Tampines</code> in address and <code>12345678</code> &amp; <code>87654321</code> in phone</p>
 </li>
 </ul>
 </div>
@@ -1311,4 +1330,4 @@ e.g. <code>update_pw c/password n/why me? a/because it is cs2103</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 08:59:59 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 12:07:24 UTC</div></div></div></body></html>
