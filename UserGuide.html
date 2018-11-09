@@ -320,7 +320,7 @@ Edits the phone number and email address of the 1st person to be <code>91234567<
 Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
 <li>
-<p><code>edit 1 sl/C:\Users\admin\Downloads\cs2103\tiredAndSadness</code><br>
+<p><code>edit 1 fl/C:\Users\admin\Downloads\cs2103\tiredAndSadness</code><br>
 Edits the stored location of the 1st person to be <code>C:/Users/admin/Downloads/cs2103/tiredAndSadness/</code> respectively.</p>
 </li>
 </ul>
@@ -599,16 +599,10 @@ Or right click on timetable and select the reload page option.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>add details of a timetable csv file to the person specified by <code>INDEX</code> from the stored folder of the person specified by <code>INDEX</code> if no file location is present.</p>
-</li>
-<li>
-<p>Adds details of a timetable csv file to the person specified by the <code>INDEX</code> from file location if file location is present.</p>
-</li>
-<li>
-<p>Add the timetable at the specified <code>INDEX</code>.</p>
-</li>
-<li>
 <p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the displayed person list.</p>
@@ -616,15 +610,12 @@ Or right click on timetable and select the reload page option.</p>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-<li>
-<p>Will not be able to add if timetable is not present in the stored location of person specified by <code>INDEX</code></p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example (user does not provide a file path):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -632,16 +623,75 @@ Or right click on timetable and select the reload page option.</p>
 <p><code>add_timetable 1</code></p>
 </li>
 <li>
-<p><code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
+<p>add_timetable will add timetable from the given csv file from the person specified by the <code>INDEX</code> from file location if file location is present. If not, NUSHangs will throw an error message if the file cannot be found from the given (typed) file path</p>
+</li>
+<li>
+<p>Will not be able to add if timetable is not present in the stored location of person specified by <code>INDEX</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Example (user provides a file path):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
+</li>
+<li>
+<p>FOR WINDOWS:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable fl/C:\Users\timetable\timetable.csv</code> (absolute pathing) or</p>
+</li>
+<li>
+<p><code>add_timetable fl/timetable.csv</code> (relative pathing - if you save the .csv file in the same directory as the .jar file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>FOR MAC:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl//FILEPATH</code> (absolute pathing - note the double slashes) or</p>
+</li>
+<li>
+<p><code>add_timetable 1 fl/timetable.csv</code> (relative pathing).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>add_timetable will add timetable from the given csv file.</p>
+</li>
+<li>
+<p>the first row and first column should be left alone</p>
+</li>
+<li>
+<p>can only edit in given rows and columns of the timetable.</p>
+</li>
+<li>
+<p>any invalid timetable will be ignored.</p>
+</li>
+<li>
+<p>example of correctly formatted timetable is given below</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/add_timetable_fl.png" alt="add timetable fl" width="700">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">6.2. Editing a timetable: <code>edit_timetable</code></a></h3>
 <div class="paragraph">
 <p>Edits a timetable timeslot of the timetable from the person specified by the <code>INDEX</code>.<br>
-Format: `add_timetable INDEX day/DAY timing/TIMING [m/DETAILS]  `</p>
+Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -651,6 +701,9 @@ Format: `add_timetable INDEX day/DAY timing/TIMING [m/DETAILS]  `</p>
 <p>timings are in 24h format from 0800 to 2300.</p>
 </li>
 <li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
+</li>
+<li>
 <p>Existing values will be overwritten by the input details.</p>
 </li>
 <li>
@@ -658,6 +711,9 @@ Format: `add_timetable INDEX day/DAY timing/TIMING [m/DETAILS]  `</p>
 </li>
 <li>
 <p>edit the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>can only edit 1 hour timeslot at a time.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the displayed person list.</p>
@@ -701,6 +757,9 @@ Format: `download_timetable INDEX `</p>
 </li>
 <li>
 <p>Will not download if there is a file with same filename as the filename of the timetable from the person specified by the <code>INDEX</code>.</p>
+</li>
+<li>
+<p>Will not download if there is no such folder to download the timetable csv file given by the file location from the person specified by the <code>INDEX</code>.</p>
 </li>
 </ul>
 </div>
@@ -1254,7 +1313,7 @@ e.g. <code>list 1</code></p>
 </li>
 <li>
 <p><strong>add_timetable</strong>: <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
-e.g. <code>add_timetable 1</code></p>
+e.g. <code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
 </li>
 <li>
 <p><strong>edit_timetable</strong>: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
@@ -1262,11 +1321,11 @@ e.g. <code>edit_timetable 1 day/wednesday timing/1800 m/do cs2103</code></p>
 </li>
 <li>
 <p><strong>download_timetable</strong> : <code>download_timetable INDEX</code><br>
-e.g. <code>download_timetable 1 l/C://Users/abc/mysecretstash</code></p>
+e.g. <code>download_timetable 1</code></p>
 </li>
 <li>
-<p><strong>delete_timetable</strong> : <code>delete INDEX p/password</code><br>
-e.g. <code>delete_timetable 3 p/password</code></p>
+<p><strong>delete_timetable</strong> : <code>delete_timetable INDEX</code><br>
+e.g. <code>delete_timetable 3</code></p>
 </li>
 <li>
 <p><strong>add_group</strong>: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]`</code><br>
@@ -1330,4 +1389,4 @@ e.g. <code>update_pw c/password n/why me? a/because it is cs2103</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 14:57:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 02:40:19 UTC</div></div></div></body></html>
