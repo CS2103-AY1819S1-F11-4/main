@@ -192,6 +192,9 @@ There is no need to save manually.</p>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code-zhiwei"><a class="link" href="#adding-a-person-code-add-code-zhiwei">5.1. Adding a person: <code>add</code> (ZhiWei)</a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>a</code></p>
+</div>
+<div class="paragraph">
 <p>Adds a person to the address book<br>
 Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
 </div>
@@ -231,11 +234,17 @@ A person can have any number of tags (including 0)
 <li>
 <p><code>add n/James t/friend e/james@example.com t/classmates</code></p>
 </li>
+<li>
+<p><code>a n/Joji t/Singer</code></p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">5.2. Listing all persons : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>l</code></p>
+</div>
 <div class="paragraph">
 <p>Shows a list of all persons in the address book.<br>
 Format: <code>list</code></p>
@@ -277,6 +286,9 @@ Format: <code>list PERSON_INDEX</code></p>
 </div>
 <div class="sect2">
 <h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">5.4. Editing a person : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>e</code></p>
+</div>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
@@ -394,6 +406,9 @@ Returns any person having <code>Tampines</code> in address and <code>12345678</c
 </div>
 <div class="sect2">
 <h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">5.6. Deleting a person : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>ds</code></p>
+</div>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -587,6 +602,9 @@ Format: <code>clear</code></p>
 <div class="sect2">
 <h3 id="adding-a-timetable-code-add_timetable-code"><a class="link" href="#adding-a-timetable-code-add_timetable-code">6.1. Adding a timetable: <code>add_timetable</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>at</code></p>
+</div>
+<div class="paragraph">
 <p>User to download timetable template first before using download_timetable INDEX and change csv at the location.<br>
 Reload page by clicking on another person and then click on the person again<br>
 Or right click on timetable and select the reload page option.</p>
@@ -690,6 +708,9 @@ Or right click on timetable and select the reload page option.</p>
 <div class="sect2">
 <h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">6.2. Editing a timetable: <code>edit_timetable</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>et</code></p>
+</div>
+<div class="paragraph">
 <p>Edits a timetable timeslot of the timetable from the person specified by the <code>INDEX</code>.<br>
 Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
 </div>
@@ -739,6 +760,9 @@ Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
 <div class="sect2">
 <h3 id="download-timetable-code-download_timetable-code"><a class="link" href="#download-timetable-code-download_timetable-code">6.3. Download timetable : <code>download_timetable</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>dlt</code></p>
+</div>
+<div class="paragraph">
 <p>Download a timetable from the person specified by the <code>INDEX</code> to the stored folder from the person specified by the <code>INDEX</code> as a csv file. <br>
 Format: `download_timetable INDEX `</p>
 </div>
@@ -778,6 +802,9 @@ Format: `download_timetable INDEX `</p>
 </div>
 <div class="sect2">
 <h3 id="deleting-a-timetable-code-delete_timetable-code"><a class="link" href="#deleting-a-timetable-code-delete_timetable-code">6.4. Deleting a timetable : <code>delete_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dt</code></p>
+</div>
 <div class="paragraph">
 <p>delete csv file of the timetable from stored location from the person specified by the <code>INDEX</code> and adds a default timetable to the person specified by the <code>INDEX</code>.Resets the timetable of the person if there is no timetable in the stored location from the person specified by the <code>INDEX</code>.<br>
 Format: <code>delete_timetable INDEX</code></p>
@@ -825,6 +852,9 @@ Deletes the 1st timetable in the results of the <code>find_timetable</code> comm
 <div class="sect2">
 <h3 id="adding-a-group-code-add_group-code"><a class="link" href="#adding-a-group-code-add_group-code">7.1. Adding a group: <code>add_group</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>ag</code></p>
+</div>
+<div class="paragraph">
 <p>Add a group to the System<br>
 Format: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]</code></p>
 </div>
@@ -847,6 +877,9 @@ Format: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]</code></p>
 </div>
 <div class="sect2">
 <h3 id="editing-a-group-code-edit_group-code"><a class="link" href="#editing-a-group-code-edit_group-code">7.2. Editing a group : <code>edit_group</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>eg</code></p>
+</div>
 <div class="paragraph">
 <p>Edit a group&#8217;s details. OLDGROUPNAME must be entered. There must be at least 1 field non-empty.<br>
 If field is empty, system assumes that the field remains unedited.</p>
@@ -884,6 +917,9 @@ If field is empty, system assumes that the field remains unedited.</p>
 <div class="sect2">
 <h3 id="locating-group-by-name-code-find_group-code"><a class="link" href="#locating-group-by-name-code-find_group-code">7.3. Locating group by name: <code>find_group</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>fg</code></p>
+</div>
+<div class="paragraph">
 <p>Find groups whose names contain any of the given keywords<br>
 Format: <code>find_group KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
@@ -908,28 +944,7 @@ Format: <code>find_group KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>TAG]&#8230;&#8203;`
-75
-* Inputs in square brackets are optional
-76
-​
-77</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-78
-A person can have any number of tags (including 0)
-79
-​
-Examples:
-</td>
-</tr>
-</table>
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -946,6 +961,9 @@ Returns any group having names <code>Betsy</code>, <code>Tim</code>, or <code>Jo
 </div>
 <div class="sect2">
 <h3 id="deleting-a-group-code-delete_group-code"><a class="link" href="#deleting-a-group-code-delete_group-code">7.4. Deleting a group : <code>delete_group</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dg</code></p>
+</div>
 <div class="paragraph">
 <p>Delete a group in the system by name<br>
 Format: <code>delete_group n/GROUPNAME</code></p>
@@ -974,6 +992,9 @@ Format: <code>delete_group n/GROUPNAME</code></p>
 </div>
 <div class="sect2">
 <h3 id="add-a-person-to-group-code-register-code"><a class="link" href="#add-a-person-to-group-code-register-code">7.5. Add a person to group : <code>register</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>r</code></p>
+</div>
 <div class="paragraph">
 <p>Adds a person using the person index to a group if group exists<br>
 Format: <code>register PERSON_INDEX n/GROUP_NAME</code></p>
@@ -1011,6 +1032,9 @@ Format: <code>register PERSON_INDEX n/GROUP_NAME</code></p>
 <div class="sect2">
 <h3 id="list-all-persons-of-a-group-code-view_group-code"><a class="link" href="#list-all-persons-of-a-group-code-view_group-code">7.6. List all persons of a group : <code>view_group</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>vg</code></p>
+</div>
+<div class="paragraph">
 <p>shows a list of all persons in a group<br>
 Format: <code>view_group n/GROUP_NAME</code></p>
 </div>
@@ -1041,6 +1065,9 @@ Format: <code>view_group n/GROUP_NAME</code></p>
 </div>
 <div class="sect2">
 <h3 id="delete-a-person-from-group-code-delete_member-code"><a class="link" href="#delete-a-person-from-group-code-delete_member-code">7.7. Delete a person from group : <code>delete_member</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dm</code></p>
+</div>
 <div class="paragraph">
 <p>Delete a person from a group using person index displayed with <code>view_group</code>.<br>
 Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
@@ -1084,6 +1111,9 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 <div class="sect2">
 <h3 id="list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_all-code"><a class="link" href="#list-all-time-slots-of-a-group-at-which-everyone-is-available-code-view_slots_all-code">8.1. List all time slots of a group at which everyone is available : <code>view_slots_all</code></a></h3>
 <div class="paragraph">
+<p>Short form/Alias: <code>va</code></p>
+</div>
+<div class="paragraph">
 <p>List all of the available time slots in a group<br>
 Format: <code>view_slots_all n/GROUP_NAME</code></p>
 </div>
@@ -1111,6 +1141,9 @@ Format: <code>view_slots_all n/GROUP_NAME</code></p>
 </div>
 <div class="sect2">
 <h3 id="list-all-time-slots-of-a-group-in-descending-order-of-availability-code-view_slots_ranked-code"><a class="link" href="#list-all-time-slots-of-a-group-in-descending-order-of-availability-code-view_slots_ranked-code">8.2. List all time slots of a group in descending order of availability: <code>view_slots_ranked</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>vr</code></p>
+</div>
 <div class="paragraph">
 <p>List all time slots of a group in descending order of availability:<br>
 Format: <code>view_slots_ranked n/GROUP_NAME</code></p>
@@ -1374,4 +1407,4 @@ e.g. <code>login u/user pw/strongpass</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 03:14:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 09:51:15 UTC</div></div></div></body></html>
