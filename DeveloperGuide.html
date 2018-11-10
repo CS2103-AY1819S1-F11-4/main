@@ -1021,6 +1021,12 @@ In version 1.3, step 4 would be implemented.</p>
 <div class="paragraph">
 <p>The <code>Group</code> class extends the <code>Entity</code> abstract class just like a <code>Person</code> class does. An <code>Entity</code> contains an abstract method <code>isSame</code> that is necessary for the class to be used in <code>UniqueList&lt;T extends Entity&gt;</code>. <code>Group</code> class is an immutable class that is contained inside <code>Model</code>.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GroupPersonClassDiagram.png" alt="GroupPersonClassDiagram" width="600">
+</div>
+<div class="title">Figure 13. Class Diagram of Group and Person</div>
+</div>
 <div class="paragraph">
 <p><code>Group</code> features make use of <code>Storage</code> to load information on groups added by the user before the UI is closed. <code>XmlAdaptedGroup</code> class helps the convert groups detail from xml files to the <code>AddressBook</code> when <code>MainApp</code> starts and similarly convert <code>Group</code> objects into xml files.</p>
 </div>
@@ -1028,7 +1034,7 @@ In version 1.3, step 4 would be implemented.</p>
 <p><code>Group</code> features also updates the Group Panel inside the <code>UI</code> using a predicate.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current group commands added are:</p>
 </div>
@@ -1082,17 +1088,17 @@ In version 1.3, step 4 would be implemented.</p>
 <div class="content">
 <img src="images/RegisterCommandLogicSequenceDiagram.png" alt="MelodiesTODO: Elaborate on how connection to UI is created." width="750">
 </div>
-<div class="title">Figure 13. Sequence Diagram of RegisterCommand (Logic component)</div>
+<div class="title">Figure 14. Sequence Diagram of RegisterCommand (Logic component)</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/RegisterCommandModelSequenceDiagram.png" alt="RegisterCommandModelSequenceDiagram" width="750">
 </div>
-<div class="title">Figure 14. Sequence Diagram of RegisterCommand (Model component)</div>
+<div class="title">Figure 15. Sequence Diagram of RegisterCommand (Model component)</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-implement-code-group-code-class"><a class="link" href="#aspect-how-to-implement-code-group-code-class">Aspect: How to implement <code>Group</code> class</a></h5>
 <div class="paragraph">
@@ -1258,7 +1264,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 16. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2978,4 +2984,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 04:10:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 04:35:38 UTC</div></div></div></body></html>
