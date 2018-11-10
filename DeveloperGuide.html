@@ -782,21 +782,42 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect2">
 <h3 id="security-mechanism"><a class="link" href="#security-mechanism">3.2. Security Mechanism</a></h3>
+<div class="sect3">
+<h4 id="reason-for-implementation-2"><a class="link" href="#reason-for-implementation-2">3.2.1. Reason for Implementation</a></h4>
 <div class="paragraph">
-<p>The main objectives of the security mechanism includes:</p>
+<p>In a typical interest group setting, there are two main stakeholders. The (1) committee members whom organizes events and the (2) group members whom participates in the event. In this context, these two stakeholders are the main users of NUS Hangs.</p>
+</div>
+<div class="paragraph">
+<p>The security mechanism is implemented on the following premises:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Preventing unauthorised usage of the application</p>
+<p>The application is used by the interest group on a shared computer</p>
 </li>
 <li>
-<p>Preventing unauthorised access and editing rights to the data stored within the application</p>
+<p>The application is offline</p>
+</li>
+<li>
+<p>Only the two stakeholders mentioned have access to the shared computer</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following activity diagram illustrates how the workflow is restricted through the security mechanism.</p>
+<p>Based on the above premises, the main objectives of the security mechanism include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Restrict group members to read-only commands</p>
+</li>
+<li>
+<p>Only committee members can add and edit information stored in the application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following activity diagram illustrates the workflow involving security mechanism.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -805,40 +826,75 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="title">Figure 10. Activity Diagram of Security Mechanism</div>
 </div>
 <div class="paragraph">
-<p>To prevent unauthorised access (read, edit and other commands) of application users are required to login to the application. Each users would only be able to access data created by themselves or data which they have been granted rights to access.</p>
+<p>The three main components that works together to achieve this workflow are:</p>
 </div>
-<div class="paragraph">
-<p>To meet this end, various functions are implemented.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Account creation</p>
+</li>
+<li>
+<p>Account login</p>
+</li>
+<li>
+<p>Validation of login status prior to executing functions</p>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.2. Current Implementation</a></h4>
+<div class="sect4">
+<h5 id="strong-account-creation-strong"><a class="link" href="#strong-account-creation-strong"><strong>Account Creation</strong></a></h5>
 <div class="paragraph">
-<p><strong>Account Creation and Login</strong> [implemented in v1.1, incomplete]</p>
+<p>The first thing a new user must do is to create a new account. To prevent unauthorized members from creating an account, the create command can only be executed if the user is logged in. A default admin account is provided (username: admin, password: adminPassword) to allow the committee members to create their first account.</p>
 </div>
 <div class="paragraph">
-<p>The first step in securing the system is to restrict access to unauthorised users. This is accomplished by setting up <code>create</code> and <code>login</code> functions.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>create</code>: creates an account</p>
-</li>
-<li>
-<p><code>login</code>: login to account</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Both functions are handled by the logic component, make use of the model component and is eventually managed through the storage component.</p>
-</div>
-<div class="paragraph">
-<p>The username is stored as a key in a hashmap while the password is encrypted and stored as the value. By using a hashmap to store the account login credentials, it becomes easy to implement the create and login function.</p>
+<p>The following sequence diagram illustrates the interactions between the different classes in the process of creating an account.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CreateCommandSequenceDiagram.png" alt="CreateCommandSequenceDiagram" width="800">
 </div>
 <div class="title">Figure 11. Sequence Diagram of Create Command</div>
+</div>
+<div class="paragraph">
+<p><strong>There are four new classes that are added to AddressBook4 in the implementation of account creation:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CreateCommandParser: parses input arguments and creates a new CreateCommand object</p>
+</li>
+<li>
+<p>CreateCommand: creates a new account for NUS Hangs</p>
+</li>
+<li>
+<p>Accounts: represents an account with username and password fields</p>
+</li>
+<li>
+<p>UserAccountStorage: storage of account credentials in a hashmap</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Minor extensions are added to the other existing classes in AddressBook4:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AddressBookParser: added the create command keyword for parsing</p>
+</li>
+<li>
+<p>ParserUtil: added functions to parse username and password</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="strong-login-account-strong"><a class="link" href="#strong-login-account-strong"><strong>Login Account</strong></a></h5>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the interactions between the different classes in the process of logging in to an account. Upon successful login, LoginCommand changes the flag in AddressBookParser to allow users to execute add/edit commands on top of read-only commands.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -847,172 +903,96 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="title">Figure 12. Sequence Diagram of Login Command</div>
 </div>
 <div class="paragraph">
-<p>*To be implemented: *</p>
+<p>There are four new classes that are added to AddressBook4 in the implementation of account creation:
+-	LoginCommandParser: parses input arguments and creates a new LoginCommand object
+-	LoginCommand: login to an account of NUS Hangs
+-	Accounts: represents an account with username and password fields
+-	UserAccountStorage: retrieval and checking of account credentials in a hashmap
+Minor extensions are added to the other existing classes in AddressBook4:
+-	AddressBookParser: added the login command keyword for parsing, added a check on login status to control commands execution
+-	ParserUtil: added functions to parse username and password</p>
 </div>
-<div class="paragraph">
-<p>convert hashmap storage into XML and vice-versa</p>
-</div>
-<div class="paragraph">
-<p><strong>Password Encryption</strong> [implemented in v1.2, to be improved]</p>
-</div>
-<div class="paragraph">
-<p>To prevent unauthorised users from getting the password by looking at the .xml files, the password is encrypted before storage. This is done by implementing Java Cryptography module.</p>
-</div>
-<div class="paragraph">
-<p><strong>Login Status Check</strong> [to be implemented in v1.3]</p>
-</div>
-<div class="paragraph">
-<p>Next, there is a need to check if user is logged in before executing any entered commands. This is done by implementing a check function in the AddressBookParser.</p>
-</div>
-<div class="paragraph">
-<p>Step 1: A new user launches the application for the first time. The welcome page would prompt the user to create an account and refer to <code>help</code> function for more details.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step01-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2: The user follows the prompt to create an account, supplying a username and password.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step02-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2a: The user supplies a duplicate username and is prompted to choose another.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step02a-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2b: The user supplies a unique username and the account is successfully created.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step02b-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3: The user is prompted to login.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step03-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3a: The user supplies the wrong login credentials.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step03a-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3b: The user supplies the right login credentials.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step03b-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 4: The user now have access to most of the commands.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SecurityMechanism-Step04-Diagram.png" alt="LeslieTODO: to be updated - add image" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>In version 1.1, the implementation is up to step 3b.
-In version 1.2, the user password is encrypted to prevent loss of password.
-In version 1.3, step 4 would be implemented.</p>
-</div>
-<div class="paragraph">
-<p>In version 2.0, encryption would be extended to other essential data stored within the system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-create-and-login"><a class="link" href="#aspect-create-and-login">Aspect: Create and Login</a></h5>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.3. Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Alternative 1 (current choice):</strong> create stores data in a hashmap.</p>
+<p><strong>Aspect: Implementation of UserAccountStorage</strong></p>
 </div>
 <div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>hashmap does not allows duplicate keys, making it easy to implement</p>
-</li>
-</ul>
+<p><strong>Alternative 1 (current choice): Storing account credentials in a HashMap</strong></p>
 </div>
 <div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>[LeslieTODO: to be updated]</p>
-</li>
-</ul>
+<p>Pros: HashMap is one of the simplest data structures to make use of. It’s especially useful since it maps values to keys. In this case, username serves as keys while the passwords serve as values to be stored in the hashmap.</p>
 </div>
 <div class="paragraph">
-<p><strong>Alternative 2:</strong></p>
+<p>Cons: By default, adding a duplicate key would overwrite the initial value. i.e. if a username is already used, the password would be changed. To prevent this, we need to implement a function to check for duplicate username before adding the account credentials.</p>
 </div>
 <div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>[LeslieTODO: to be updated]</p>
-</li>
-</ul>
+<p><strong>Alternative 2: Storing account credentials in a LinkedHashMap</strong></p>
 </div>
 <div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>[LeslieTODO: to be updated]</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-how-encryption-executes"><a class="link" href="#aspect-how-encryption-executes">Aspect: How encryption executes</a></h5>
-<div class="paragraph">
-<p><strong>Alternative 1 (current choice):</strong> a function call to encryption before storing password data into hashmap. when logging in, a function call encrypts the user entered password before comparing to stored password in hashmap</p>
+<p>Pros: captures the order of account creation</p>
 </div>
 <div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>hashmap does not allows duplicate keys, making it easy to implement</p>
-</li>
-</ul>
+<p>Cons: LinkedHashMaps is implemented by maintaining a doubly-linked list running through all entries to capture the order. This additional data structure results in additional memory usage.</p>
 </div>
 <div class="paragraph">
-<p>Cons:</p>
+<p><strong>Aspect: Implementation of Encrypt</strong></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>[LeslieTODO: to be updated]</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Alternative 1(current choice): SHA-256</strong></p>
 </div>
+<div class="paragraph">
+<p>Pros: SHA-256 is a one-way hashing algorithm. This means that it is not feasible to invert which prevents unauthorized users from getting the plain text passwords. In version 1.4, NUS Hangs is an offline application situated on a single shared computer. Hence, a simple hash function is adequate in preventing unauthorized users from retrieving the passwords from the application.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Shorter hash outputs makes it easier to brute force.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2: SHA-512 + Salting</strong></p>
+</div>
+<div class="paragraph">
+<p>Pros: Longer hash output that is less predictable protects it from rainbow table attacks.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Uses more memory space to store the longer hash output.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect: Validation of Login Status</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice): Login Status Flag implemented directly in AddressBookParser</strong></p>
+</div>
+<div class="paragraph">
+<p>Pros: This allows for simple implementation to control commands rights</p>
+</div>
+<div class="paragraph">
+<p>Cons: As the amount of commands increases, this might become difficult to maintain.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2: Creating two different parsers for read-only commands and add/edit commands</strong></p>
+</div>
+<div class="paragraph">
+<p>Pros: Easier to maintain as the amount of commands increases</p>
+</div>
+<div class="paragraph">
+<p>Cons: Requires significant changes to the current architecture.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="limitations-version-1-4"><a class="link" href="#limitations-version-1-4">3.2.4. Limitations (version 1.4)</a></h4>
+<div class="paragraph">
+<p><strong>Account Credentials does not persist</strong></p>
+</div>
+<div class="paragraph">
+<p>Account credentials are stored in a hashmap. The problem with the current storage of account credentials is the lack of persistence, i.e. when the user closes the application, the account credentials are lost. In the future version, this problem will be solved either by storing credentials in an external file (such as .xml, .txt) or in a database.</p>
+</div>
+<div class="paragraph">
+<p><strong>No restrictions on password</strong></p>
+</div>
+<div class="paragraph">
+<p>There are no restrictions on password, namely there is no checks to ensure that the passwords are strong. This means that users can use weak passwords or even leave the password field empty to make it easy to log in.</p>
 </div>
 </div>
 </div>
@@ -2955,4 +2935,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:44:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:56:00 UTC</div></div></div></body></html>
