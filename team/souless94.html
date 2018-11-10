@@ -64,6 +64,9 @@
 <li>
 <p>grokonez from <a href="https://grokonez.com/java/java-read-write-csv-file-opencsv-example" class="bare">https://grokonez.com/java/java-read-write-csv-file-opencsv-example</a></p>
 </li>
+<li>
+<p>Laurence Gonsalves from <a href="https://stackoverflow.com/questions/923863/converting-a-string-to-hexadecimal-in-java" class="bare">https://stackoverflow.com/questions/923863/converting-a-string-to-hexadecimal-in-java</a></p>
+</li>
 </ul>
 </div>
 </li>
@@ -153,6 +156,251 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="adding-a-timetable-code-add_timetable-code"><a class="link" href="#adding-a-timetable-code-add_timetable-code">Adding a timetable: <code>add_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>at</code></p>
+</div>
+<div class="paragraph">
+<p>User to download timetable template first before using download_timetable INDEX and change csv at the location.<br>
+Reload page by clicking on another person and then click on the person again<br>
+Or right click on timetable and select the reload page option.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>add_timetable INDEX [fl/FILE_LOCATION]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example (user does not provide a file path):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1</code></p>
+</li>
+<li>
+<p>add_timetable will add timetable from the given csv file from the person specified by the <code>INDEX</code> from file location if file location is present. If not, NUSHangs will throw an error message if the file cannot be found from the given (typed) file path</p>
+</li>
+<li>
+<p>Will not be able to add if timetable is not present in the stored location of person specified by <code>INDEX</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example (user provides a file path):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
+</li>
+<li>
+<p>FOR WINDOWS:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable fl/C:\Users\timetable\timetable.csv</code> (absolute pathing) or</p>
+</li>
+<li>
+<p><code>add_timetable fl/timetable.csv</code> (relative pathing - if you save the .csv file in the same directory as the .jar file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>FOR MAC:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl//FILEPATH</code> (absolute pathing - note the double slashes) or</p>
+</li>
+<li>
+<p><code>add_timetable 1 fl/timetable.csv</code> (relative pathing).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>add_timetable will add timetable from the given csv file.</p>
+</li>
+<li>
+<p>the first row and first column should be left alone</p>
+</li>
+<li>
+<p>can only edit in given rows and columns of the timetable.</p>
+</li>
+<li>
+<p>any invalid timetable will be ignored.</p>
+</li>
+<li>
+<p>example of correctly formatted timetable is given below</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/add_timetable_fl.png" alt="add timetable fl" width="700">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">Editing a timetable: <code>edit_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>et</code></p>
+</div>
+<div class="paragraph">
+<p>Edits a timetable timeslot of the timetable from the person specified by the <code>INDEX</code>.<br>
+Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>timings are in 24h format from 0800 to 2300.</p>
+</li>
+<li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
+</li>
+<li>
+<p>Existing values will be overwritten by the input details.</p>
+</li>
+<li>
+<p>days are days of a week in <strong>full name(case insensitive)</strong> from Monday to Friday.</p>
+</li>
+<li>
+<p>edit the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>can only edit 1 hour timeslot at a time.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit_timetable 1 day/wednesday timing/0900 m/do cs2103</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="download-timetable-code-download_timetable-code"><a class="link" href="#download-timetable-code-download_timetable-code">Download timetable : <code>download_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dlt</code></p>
+</div>
+<div class="paragraph">
+<p>Download a timetable from the person specified by the <code>INDEX</code> to the stored folder from the person specified by the <code>INDEX</code> as a csv file. <br>
+Format: `download_timetable INDEX `</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Download the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Will not download if there is a file with same filename as the filename of the timetable from the person specified by the <code>INDEX</code>.</p>
+</li>
+<li>
+<p>Will not download if there is no such folder to download the timetable csv file given by the file location from the person specified by the <code>INDEX</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>download_timetable 1</code><br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-timetable-code-delete_timetable-code"><a class="link" href="#deleting-a-timetable-code-delete_timetable-code">Deleting a timetable : <code>delete_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dt</code></p>
+</div>
+<div class="paragraph">
+<p>delete csv file of the timetable from stored location from the person specified by the <code>INDEX</code> and adds a default timetable to the person specified by the <code>INDEX</code>.Resets the timetable of the person if there is no timetable in the stored location from the person specified by the <code>INDEX</code>.<br>
+Format: <code>delete_timetable INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed timetable list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list_timetable</code><br>
+<code>delete_timetable 2</code><br>
+Deletes the 2nd timetable in the address book.</p>
+</li>
+<li>
+<p><code>find_timetable Betsy</code><br>
+<code>delete_timetable 1</code><br>
+Deletes the 1st timetable in the results of the <code>find_timetable</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -173,4 +421,4 @@
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 08:40:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:44:27 UTC</div></div></div></body></html>
