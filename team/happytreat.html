@@ -20,12 +20,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: Created a group class and added corresponding group functions:
-i.e. add_group, delete_group, edit_group, register, delete_member, find_group, view_group.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: The group class allows users to categorise persons into groups and facilitate free time slot allocation.</p>
+<p><strong>Major enhancement</strong>: Created a group class and added corresponding group functions:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -48,25 +43,22 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 </li>
 <li>
 <p>view_group: View all members of the group in UI.</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Justification: This feature improves the product&#8217;s functionality significantly because a user can now better organise his contacts into groups and easily coordinate common time slots to meet.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future.The implementation too was challenging as it required changes to existing commands:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The integration of Group and Person Class. For instance, delete_group requires the group to be deleted and all reference to the group in all Persons registered to be deleted. <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/92">#92</a></p>
-</li>
-<li>
-<p>Changes in the UI and Storage components. For instance, the GroupPanel has to be created to show and update all groups. Group Data have to stored after the app closes inside addressbook.xml and reloaded into the app as Group objects once the user reopens the app.</p>
+<p>Highlights: This enhancement affects existing and future commands. The implementation was challenging due to:</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Integration of Group and Person Class. For instance, delete_group requires the group to be deleted and all reference to the group in all Persons registered to be deleted.</p>
+</li>
+<li>
+<p>Changes in the UI and Storage components. For instance, the GroupPanel has to be created to show and update all groups. Group Data have to stored after the app closes inside addressbook.xml and reloaded into the app as Group objects once the user reopens the app.</p>
 </li>
 </ul>
 </div>
@@ -75,13 +67,13 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 <p><strong>Minor enhancement</strong>: Enhance <code>list</code> command to list both groups and persons. Added a <code>list INDEX</code> command to show all the groups that the person at INDEX is currently in.</p>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Created short hands/short forms for most commands. (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/208">#208</a>)</p>
+<p><strong>Minor enhancement</strong>: Created short forms for commands. (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/208">#208</a>)</p>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Refactored UniquePersonList into UniqueList&lt;T&gt; for different classes: Groups, Person and Timetable.</p>
+<p><strong>Minor enhancement</strong>: Created an Abstract class Entity which Group and Person extends from to allow for polymorphism: Refactored the ModelManager and AddressBook function to include Polymorphism. E.g. addPerson() -&#8594; add() which performs add on Group or Person class based on polymorphism. Also, refactored UniquePersonList into UniqueList&lt;T&gt; for different classes: Group and Person.</p>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Created an Abstract class Entity which Group and Person extends from to allow for polymorphism: Refactored the ModelManager and AddressBook function to include Polymorphism. E.g. addPerson() -&#8594; add() which performs add on Group or Person class based on polymorphism.</p>
+<p><strong>Minor enhancement</strong>: Created a defensive defensiveSetGroups method in Person class enforcing compulsory association of Person and groupList- instead of setGroup() which can alter a private groupList field in Person and also checks for null entries of groupList (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/222">#222</a>).</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=happytreat">Functional and Test code</a>]</p>
@@ -108,7 +100,7 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 <div class="ulist">
 <ul>
 <li>
-<p>Wrote additional tests for existing features to increase coverage by &gt;4% (Pull requests <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/80">#80</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/123">#123</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/146">#146</a>)</p>
+<p>Wrote additional tests to increase coverage by &gt;5% (Pull requests <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/222">#222</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/80">#80</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/123">#123</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/146">#146</a>)</p>
 </li>
 </ul>
 </div>
@@ -118,13 +110,7 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 <div class="ulist">
 <ul>
 <li>
-<p>Edit the Model OOP Class Diagram in Dev Guide to include new classes: <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/202">#202</a></p>
-</li>
-<li>
-<p>Edit the Storage Class Diagram in Dev Guide to include new class: <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/200">#200</a></p>
-</li>
-<li>
-<p>Update Logic and High Level Sequence Diagrams to current implementation <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/213">#213</a></p>
+<p>Update the Model, Storage Class diagrams Logic and High level Sequence Diagrams in DG: <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/202">#202</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/200">#200</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/213">#213</a></p>
 </li>
 </ul>
 </div>
@@ -134,13 +120,13 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/71">#71</a>)</p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/71">#71</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/155">#155</a>)</p>
 </li>
 <li>
-<p>Some parts of the group feature I added was adopted by several other teammates (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/155">#155</a>, <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/160">#160</a>)</p>
+<p>Parts of the group feature adopted by other teammates (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/160">#160</a>)</p>
 </li>
 <li>
-<p>Create a CommandUtil.java with many common functions reused by different commands including those in AB4 and those used by other teammates.</p>
+<p>Create a CommandUtil.java with common functions reused by different commands in AB4 and those used by other teammates (<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/211">#211</a>)</p>
 </li>
 </ul>
 </div>
@@ -643,4 +629,4 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 14:50:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:16:01 UTC</div></div></div></body></html>
