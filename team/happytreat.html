@@ -165,13 +165,41 @@ i.e. add_group, delete_group, edit_group, register, delete_member, find_group, v
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="groups-melodies"><a class="link" href="#groups-melodies">Groups (Melodies)</a></h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="adding-a-group-code-add_group-code"><a class="link" href="#adding-a-group-code-add_group-code">Adding a group: <code>add_group</code></a></h3>
+<h3 id="listing-all-groups-a-person-is-in-code-list-code-melodies"><a class="link" href="#listing-all-groups-a-person-is-in-code-list-code-melodies">Listing all groups a person is in : <code>list</code> (Melodies)</a></h3>
+<div class="paragraph">
+<p>Shows a list of all groups the person specified by his PERSON_INDEX is in.<br>
+Format: <code>list PERSON_INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>(Remember to <code>list</code> first)</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>List the groups that the person at the specified <code>INDEX</code> is currently in. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list 1</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(lists all the groups that the person at index 1 is added to previously)
+== Groups (Melodies)
+=== Adding a group: <code>add_group</code></p>
+</div>
 <div class="paragraph">
 <p>Short form/Alias: <code>ag</code></p>
 </div>
@@ -437,5 +465,179 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="group-feature"><a class="link" href="#group-feature">Group Feature</a></h3>
+<div class="paragraph">
+<p>The <code>Group</code> class extends the <code>Entity</code> abstract class just like a <code>Person</code> class does. An <code>Entity</code> contains an abstract method <code>isSame</code> that is necessary for the class to be used in <code>UniqueList&lt;T extends Entity&gt;</code>. <code>Group</code> class is an immutable class that is contained inside <code>Model</code>.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 08:38:08 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p>As shown in the diagram below, group and person classes are associated. Each group contains a UniqueList&lt;Person&gt;, a list of its members. Likewise, each person contains a UniqueList&lt;Group&gt;, a list of all groups he is in. Due to these mutual association, commands editing/deleting instances of group or person may have to edit the corresponding member/group lists respectively. (Refer to DeleteGroupCommand example below.)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GroupPersonClassDiagram.png" alt="GroupPersonClassDiagram" width="600">
+</div>
+<div class="title">Figure 1. Class Diagram of Group and Person</div>
+</div>
+<div class="paragraph">
+<p><code>Group</code> features make use of <code>Storage</code> to load information on groups added by the user before the UI is closed. <code>XmlAdaptedGroup</code> class helps the convert groups detail from xml files to the <code>AddressBook</code> when <code>MainApp</code> starts and similarly convert <code>Group</code> objects into xml files.</p>
+</div>
+<div class="paragraph">
+<p><code>Group</code> features also updates the Group Panel inside the <code>UI</code> using a predicate.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The current group commands added are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_group</code>/<code>ag</code>&#8201;&#8212;&#8201;adds a group with an optional description</p>
+</li>
+<li>
+<p><code>delete_group/`dg`</code>&#8201;&#8212;&#8201;deletes a group and all references from its members to it</p>
+</li>
+<li>
+<p><code>edit_group</code>/<code>eg</code>&#8201;&#8212;&#8201;edit name/description of a group while maintaining uniqueness of all group names</p>
+</li>
+<li>
+<p><code>find_group</code>/<code>fg</code>&#8201;&#8212;&#8201;search for groups using keywords that must match exactly a word in Group name</p>
+</li>
+<li>
+<p><code>register</code>/<code>r</code>&#8201;&#8212;&#8201;register a member into an existing group and include a reference to the group in the member (Person class)</p>
+</li>
+<li>
+<p><code>delete_member/`dm</code>&#8201;&#8212;&#8201;delete an existing member from an existing group and remove reference to that group in the member</p>
+</li>
+<li>
+<p><code>view_group</code>/<code>vg</code>&#8201;&#8212;&#8201;view the existing members in the group and is updated whenever any member is added or deleted.</p>
+</li>
+<li>
+<p><code>list [person_index]</code>/<code>l [person_index]</code>&#8201;&#8212;&#8201;lists all the groups the person at <code>[person_index]</code> is currently in.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These functions and their parsers are handled in <code>Logic</code>, before updating <code>Model</code> and <code>Storage</code> and displaying the updated result on the <code>UI</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="an-example-deletegroupcommand"><a class="link" href="#an-example-deletegroupcommand">An Example: DeleteGroupCommand</a></h4>
+<div class="paragraph">
+<p>The DeleteGroupCommand is a good example of how Group and Person classes are interacting (dependent and associated with each other). An example usage scenario of how <code>delete_group</code> behaves at each stop is explained below.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. (We assume that the user has already added a group and person.)</p>
+</div>
+<div class="paragraph">
+<p>*<code>VersionedAddressBook</code> will be loaded with the final addressbook state before the application was closed.</p>
+</div>
+<div class="paragraph">
+<p>*Lists of groups and persons added previously will be loaded from <code>addressbook.xml</code> file into <code>Model</code> using <code>XmlAdaptedPerson</code> and <code>XmlAdaptedGroup</code> classes.</p>
+</div>
+<div class="paragraph">
+<p>*The updated lists will be displayed in the <code>UI</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteGroupCommandLogicSD.png" alt="DeleteGroupCommandLogicSD" width="750">
+</div>
+<div class="title">Figure 2. Sequence Diagram of DeleteGroupCommand (Logic component)</div>
+</div>
+<div class="paragraph">
+<p>Step 2: The user enters the command <code>dg n/Family</code> to delete the existing group with group name Family.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>LogicManager</code> class parses the command to <code>AddressBookParser</code>.</p>
+</li>
+<li>
+<p><code>AddressBookParser</code> creates a <code>DeleteGroupCommandParser</code> instance which parses the String "Family" into a <code>Name</code> name. The parser creates a <code>Group</code> gr with the name (Family). This group is needed for the function below.</p>
+</li>
+<li>
+<p>The parser creates a <code>DeleteGroupCommand</code> object with parameters gr. Subsequently, <code>retrieveGroupFromName(m, gr.getName())</code> is called to the Model component in order to retrieve the actual group with the name "Family".</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteGroupCommandModelSD.png" alt="DeleteGroupCommandModelSD" width="700">
+</div>
+<div class="title">Figure 3. Sequence Diagram of DeleteGroupCommand (Model component)</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After retrieving the actual group <code>g</code> with name "Family" from Model <code>m</code>, the model performs deletion of the group using an internal function <code>delete(g)</code>.</p>
+</li>
+<li>
+<p>However, the group still has to be deleted from the groupList from all of its members. <em>(Refer to GroupPersonClassDiagram above.)</em> <code>deleteGroupFromMembers(m, g)</code> is called from DeleteGroupCommand object to do so. This method calls the <code>UnModifiableObservableList()</code> method in its UniqueList&lt;Person&gt; to return a list of <code>members</code> in <code>g</code>.</p>
+</li>
+<li>
+<p>For every <code>member</code> in the list of <code>members</code> (for loop), <code>updatePersonDeleteGroupFromGroupList(m, g, member)</code> deletes the reference to <code>g</code> in <code>member</code>.</p>
+</li>
+<li>
+<p>Finally, the address book is committed with all the changes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 4: <code>FilteredPersonList</code> and <code>FilteredGroupList</code> is also updated correspondingly to display the new groups and persons in the <code>UI</code>. A successful message is also displayed to the user below the UI&#8217;s command box. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
+</div>
+<div class="paragraph">
+<p>Step 5: Before the application is closed, all groups and persons are stored in <code>addressbook.xml</code> using <code>XmlAdaptedGroup</code> and <code>XmlAdaptedPerson</code> classes. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-implement-code-group-code-class"><a class="link" href="#aspect-how-to-implement-code-group-code-class">Aspect: How to implement <code>Group</code> class</a></h5>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> <code>Group</code> as an immutable class.</p>
+</div>
+<div class="paragraph">
+<p>Pros: Immutable objects are good Map keys and Set elements, since these typically do not change once created. Immutability makes it easier to write, use and reason about the code.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Doing so might restrict the way one can call the class and its methods. It may be slower as you have to create new objects with every command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Setter methods for Groups</p>
+</div>
+<div class="paragraph">
+<p>Pros: Easier and less code for methods involving groups. Faster as do not have to create new objects each time you change a Group (e.g. edit its description or group members).</p>
+</div>
+<div class="paragraph">
+<p>Cons: Miss out on the advantages of immutable object (above). Good practice to use immutable objects.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-interactions-between-person-and-groups"><a class="link" href="#aspect-interactions-between-person-and-groups">Aspect: Interactions between person and groups</a></h5>
+<div class="paragraph">
+<p>Deleting a person from a group will affect the person&#8217;s reference to that group and vice versa (similar for adding and editing).</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Having a <code>UniqueList&lt;Groups&gt;</code> in <code>Person</code> and <code>UniqueList&lt;Person&gt;</code> in <code>Group</code>.</p>
+</div>
+<div class="paragraph">
+<p>Pros: Easy to retrieve groups from Person and persons from Group. Existing <code>UniqueList</code> class available (since already used in <code>Model</code>).</p>
+</div>
+<div class="paragraph">
+<p>Cons: Have to update both lists in most group commands (e.g. registering a new member in a group). Issue of enforcing referential integrity - defensive programming.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2</strong> Just update the list of groups in <code>Model</code> and have person refer to that list of group as to whether it is a member of the group.</p>
+</div>
+<div class="paragraph">
+<p>Pros: Less issues with enforcing referential integrity (see alternative 1).</p>
+</div>
+<div class="paragraph">
+<p>Cons: Can be more expensive to look for groups for a particular person.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 08:39:20 UTC</div></div></div></body></html>
