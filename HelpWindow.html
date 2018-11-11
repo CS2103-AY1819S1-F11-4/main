@@ -672,7 +672,7 @@ Format: <code>clear</code></p>
 <div class="paragraph">
 <p>User to download timetable template first before using download_timetable INDEX and change csv at the location.<br>
 Reload page by clicking on another person and then click on the person again<br>
-Or right click on timetable and select the reload page option.</p>
+Or right click on timetable and select the reload page option(Not working).</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>add_timetable INDEX [fl/FILE_LOCATION]</code></p>
@@ -807,17 +807,33 @@ Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
+<li>
+<p>DETAILS cannot be empty.</p>
+</li>
+<li>
+<p>If no DETAILS is inputted, the value will be deleted at the timeslot</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>edit_timetable 1 day/wednesday timing/0900 m/do cs2103</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example(User clear event at timeslot):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit_timetable 1 day/wednesday timing/0900</code></p>
 </li>
 </ul>
 </div>
@@ -902,9 +918,9 @@ Format: <code>delete_timetable INDEX</code></p>
 Deletes the 2nd timetable in NUS Hangs.</p>
 </li>
 <li>
-<p><code>find_timetable Betsy</code><br>
+<p><code>find Betsy</code><br>
 <code>delete_timetable 1</code><br>
-Deletes the 1st timetable in the results of the <code>find_timetable</code> command.</p>
+Deletes the 1st timetable in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
@@ -1482,4 +1498,4 @@ e.g. <code>login u/user pw/strongpass</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:11:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:14:16 UTC</div></div></div></body></html>
