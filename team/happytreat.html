@@ -514,16 +514,7 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 <p>The DeleteGroupCommand is a good example of how Group and Person classes are interacting (dependent and associated with each other). An example usage scenario of how <code>delete_group</code> behaves at each stop is explained below.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: The user launches the application. (We assume that the user has already added a group and person.)</p>
-</div>
-<div class="paragraph">
-<p>*<code>VersionedAddressBook</code> will be loaded with the final addressbook state before the application was closed.</p>
-</div>
-<div class="paragraph">
-<p>*Lists of groups and persons added previously will be loaded from <code>addressbook.xml</code> file into <code>Model</code> using <code>XmlAdaptedPerson</code> and <code>XmlAdaptedGroup</code> classes.</p>
-</div>
-<div class="paragraph">
-<p>*The updated lists will be displayed in the <code>UI</code>.</p>
+<p>Step 1: The user launches the application. (We assume that the user has already added a group and person.) <code>VersionedAddressBook</code> will be loaded with the final addressbook state before the application was closed. Lists of groups and persons added previously will be loaded from <code>addressbook.xml</code> file into <code>Model</code> using <code>XmlAdaptedPerson</code> and <code>XmlAdaptedGroup</code> classes. Updated lists will be displayed in the <code>UI</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -531,19 +522,13 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 </div>
 <div class="title">Figure 2. Sequence Diagram of DeleteGroupCommand (Logic component)</div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  _{give links to collated code files}_
-Step 2: The user enters the command `dg n/Family` to delete the existing group with group name Family.</pre>
-</div>
+<div class="paragraph">
+<p>Step 2: The user enters the command <code>dg n/Family</code> to delete the existing group with group name Family.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>LogicManager</code> class parses the command to <code>AddressBookParser</code>.</p>
-</li>
-<li>
-<p><code>AddressBookParser</code> creates a <code>DeleteGroupCommandParser</code> instance which parses the String "Family" into a <code>Name</code> name. The parser creates a <code>Group</code> gr with the name (Family). This group is needed for the function below.</p>
+<p>The <code>LogicManager</code> class parses the command to <code>AddressBookParser</code>. <code>AddressBookParser</code> creates a <code>DeleteGroupCommandParser</code> instance which parses the String "Family" into a <code>Name</code> name. The parser creates a <code>Group</code> gr with the name (Family). This group is needed for the function below.</p>
 </li>
 <li>
 <p>The parser creates a <code>DeleteGroupCommand</code> object with parameters gr. Subsequently, <code>retrieveGroupFromName(m, gr.getName())</code> is called to the Model component in order to retrieve the actual group with the name "Family".</p>
@@ -562,10 +547,7 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 <p>After retrieving the actual group <code>g</code> with name "Family" from Model <code>m</code>, the model performs deletion of the group using an internal function <code>delete(g)</code>.</p>
 </li>
 <li>
-<p>However, the group still has to be deleted from the groupList from all of its members. <em>(Refer to GroupPersonClassDiagram above.)</em> <code>deleteGroupFromMembers(m, g)</code> is called from DeleteGroupCommand object to do so. This method calls the <code>UnModifiableObservableList()</code> method in its UniqueList&lt;Person&gt; to return a list of <code>members</code> in <code>g</code>.</p>
-</li>
-<li>
-<p>For every <code>member</code> in the list of <code>members</code> (for loop), <code>updatePersonDeleteGroupFromGroupList(m, g, member)</code> deletes the reference to <code>g</code> in <code>member</code>.</p>
+<p>However, the group still has to be deleted from the groupList from all of its members. <em>(Refer to GroupPersonClassDiagram above.)</em> <code>deleteGroupFromMembers(m, g)</code> is called from DeleteGroupCommand object to do so. This method calls the <code>UnModifiableObservableList()</code> method in its UniqueList&lt;Person&gt; to return a list of <code>members</code> in <code>g</code>. For every <code>member</code> in the list of <code>members</code> (for loop), <code>updatePersonDeleteGroupFromGroupList(m, g, member)</code> deletes the reference to <code>g</code> in <code>member</code>.</p>
 </li>
 <li>
 <p>Finally, the address book is committed with all the changes.</p>
@@ -573,7 +555,7 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 4: <code>FilteredPersonList</code> and <code>FilteredGroupList</code> is also updated correspondingly to display the new groups and persons in the <code>UI</code>. A successful message is also displayed to the user below the UI&#8217;s command box. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
+<p>Step 4: <code>FilteredPersonList</code> and <code>FilteredGroupList</code> is also updated correspondingly to display the new groups and persons in the <code>UI</code>. A successful message is also displayed to the user below the UI&#8217;s command box.</p>
 </div>
 <div class="paragraph">
 <p>Step 5: Before the application is closed, all groups and persons are stored in <code>addressbook.xml</code> using <code>XmlAdaptedGroup</code> and <code>XmlAdaptedPerson</code> classes. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
@@ -629,4 +611,4 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:16:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 01:08:15 UTC</div></div></div></body></html>

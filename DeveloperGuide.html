@@ -72,7 +72,9 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">F.2. Deleting a person</a></li>
+<li><a href="#creating-an-account">F.2. Creating an Account</a></li>
+<li><a href="#read-only-commands">F.3. Read-Only Commands</a></li>
+<li><a href="#add-and-edit-commands">F.4. Add and Edit Commands</a></li>
 </ul>
 </li>
 </ul>
@@ -1059,16 +1061,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 <p>The DeleteGroupCommand is a good example of how Group and Person classes are interacting (dependent and associated with each other). An example usage scenario of how <code>delete_group</code> behaves at each stop is explained below.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: The user launches the application. (We assume that the user has already added a group and person.)</p>
-</div>
-<div class="paragraph">
-<p>*<code>VersionedAddressBook</code> will be loaded with the final addressbook state before the application was closed.</p>
-</div>
-<div class="paragraph">
-<p>*Lists of groups and persons added previously will be loaded from <code>addressbook.xml</code> file into <code>Model</code> using <code>XmlAdaptedPerson</code> and <code>XmlAdaptedGroup</code> classes.</p>
-</div>
-<div class="paragraph">
-<p>*The updated lists will be displayed in the <code>UI</code>.</p>
+<p>Step 1: The user launches the application. (We assume that the user has already added a group and person.) <code>VersionedAddressBook</code> will be loaded with the final addressbook state before the application was closed. Lists of groups and persons added previously will be loaded from <code>addressbook.xml</code> file into <code>Model</code> using <code>XmlAdaptedPerson</code> and <code>XmlAdaptedGroup</code> classes. Updated lists will be displayed in the <code>UI</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1076,19 +1069,13 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 <div class="title">Figure 14. Sequence Diagram of DeleteGroupCommand (Logic component)</div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  _{give links to collated code files}_
-Step 2: The user enters the command `dg n/Family` to delete the existing group with group name Family.</pre>
-</div>
+<div class="paragraph">
+<p>Step 2: The user enters the command <code>dg n/Family</code> to delete the existing group with group name Family.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>LogicManager</code> class parses the command to <code>AddressBookParser</code>.</p>
-</li>
-<li>
-<p><code>AddressBookParser</code> creates a <code>DeleteGroupCommandParser</code> instance which parses the String "Family" into a <code>Name</code> name. The parser creates a <code>Group</code> gr with the name (Family). This group is needed for the function below.</p>
+<p>The <code>LogicManager</code> class parses the command to <code>AddressBookParser</code>. <code>AddressBookParser</code> creates a <code>DeleteGroupCommandParser</code> instance which parses the String "Family" into a <code>Name</code> name. The parser creates a <code>Group</code> gr with the name (Family). This group is needed for the function below.</p>
 </li>
 <li>
 <p>The parser creates a <code>DeleteGroupCommand</code> object with parameters gr. Subsequently, <code>retrieveGroupFromName(m, gr.getName())</code> is called to the Model component in order to retrieve the actual group with the name "Family".</p>
@@ -1107,10 +1094,7 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 <p>After retrieving the actual group <code>g</code> with name "Family" from Model <code>m</code>, the model performs deletion of the group using an internal function <code>delete(g)</code>.</p>
 </li>
 <li>
-<p>However, the group still has to be deleted from the groupList from all of its members. <em>(Refer to GroupPersonClassDiagram above.)</em> <code>deleteGroupFromMembers(m, g)</code> is called from DeleteGroupCommand object to do so. This method calls the <code>UnModifiableObservableList()</code> method in its UniqueList&lt;Person&gt; to return a list of <code>members</code> in <code>g</code>.</p>
-</li>
-<li>
-<p>For every <code>member</code> in the list of <code>members</code> (for loop), <code>updatePersonDeleteGroupFromGroupList(m, g, member)</code> deletes the reference to <code>g</code> in <code>member</code>.</p>
+<p>However, the group still has to be deleted from the groupList from all of its members. <em>(Refer to GroupPersonClassDiagram above.)</em> <code>deleteGroupFromMembers(m, g)</code> is called from DeleteGroupCommand object to do so. This method calls the <code>UnModifiableObservableList()</code> method in its UniqueList&lt;Person&gt; to return a list of <code>members</code> in <code>g</code>. For every <code>member</code> in the list of <code>members</code> (for loop), <code>updatePersonDeleteGroupFromGroupList(m, g, member)</code> deletes the reference to <code>g</code> in <code>member</code>.</p>
 </li>
 <li>
 <p>Finally, the address book is committed with all the changes.</p>
@@ -1118,7 +1102,7 @@ Step 2: The user enters the command `dg n/Family` to delete the existing group w
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 4: <code>FilteredPersonList</code> and <code>FilteredGroupList</code> is also updated correspondingly to display the new groups and persons in the <code>UI</code>. A successful message is also displayed to the user below the UI&#8217;s command box. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
+<p>Step 4: <code>FilteredPersonList</code> and <code>FilteredGroupList</code> is also updated correspondingly to display the new groups and persons in the <code>UI</code>. A successful message is also displayed to the user below the UI&#8217;s command box.</p>
 </div>
 <div class="paragraph">
 <p>Step 5: Before the application is closed, all groups and persons are stored in <code>addressbook.xml</code> using <code>XmlAdaptedGroup</code> and <code>XmlAdaptedPerson</code> classes. <em>(Refer to High level sequence diagrams Figure 3 and 4 for a similar illustration of the concept.)</em></p>
@@ -2906,32 +2890,306 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">F.2. Deleting a person</a></h3>
+<h3 id="creating-an-account"><a class="link" href="#creating-an-account">F.2. Creating an Account</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>You can use NUS Hangs without creating an account. In that case, you are restricted to the following read-only commands:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p><code>help</code></p>
 </li>
+<li>
+<p><code>list</code></p>
+</li>
+<li>
+<p><code>find</code></p>
+</li>
+<li>
+<p><code>select</code></p>
+</li>
+<li>
+<p><code>find_group</code></p>
+</li>
+<li>
+<p><code>view_group</code></p>
+</li>
+<li>
+<p><code>view_slots_all</code></p>
+</li>
+<li>
+<p><code>view_slots_ranked</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Prerequisites: The application is set up such that you have to login in order to create an account. This prevents unauthorized creation of account and manipulation of stored information.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Login with the following command <code>login u/admin pw/adminPassword</code></p>
+</li>
+<li>
+<p>Create a new account using <code>create u/newuser pw/strongerpassword</code></p>
+</li>
+<li>
+<p>Login to the new account using <code>login u/newuser pw/strongerpassword</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At the current version, user account credentials are <strong>lost</strong> upon closing the application.<br>
+If you restart the application during testing, you are required to create a new account or simply make use of the default admin account provided.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="create-command"><a class="link" href="#create-command">F.2.1. Create command</a></h4>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>create u/newuser pw/pass</code><br>
+Expected: Account is successfully created.</p>
+</li>
+<li>
+<p>Test case: <code>create u/nopass pw/</code><br>
+Expected: Account is successfully created. The password field is allowed to be blank, although not recommended. This is a way to allow admin to quickly login to the application.</p>
+</li>
+<li>
+<p>Test case: <code>create u/ pw/</code><br>
+Expected: Account is successfully created. The username and password fields are both allowed to be blank, although not recommended. This is a way to allow admin to quickly login to the application.</p>
+</li>
+<li>
+<p>Test case: <code>create u/admin pw/pass</code><br>
+Expected: Account is not created as the username is already in use.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="read-only-commands"><a class="link" href="#read-only-commands">F.3. Read-Only Commands</a></h3>
+<div class="paragraph">
+<p>These commands can be used regardless of whether the user is logged in or not.</p>
+</div>
+<div class="sect3">
+<h4 id="code-list-code"><a class="link" href="#code-list-code">F.3.1. <code>list</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List all persons and groups</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>list</code><br>
+Expected: output multiple persons and groups in the list.</p>
+</li>
+<li>
+<p>Test case: <code>list 1</code><br>
+Expected: output the group that person 1 belongs to and filter the list to show only person 1</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-find-code"><a class="link" href="#code-find-code">F.3.2. <code>find</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finds all persons in NUS Hangs, whose contain keywords provided by prefix(es).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>find a/serangoon</code><br>
+Expected: list all persons in NUS Hangs with keyword 'serangoon' in their address</p>
+</li>
+<li>
+<p>Test case: <code>find n/yu</code><br>
+Expected: list all persons in NUS Hangs with keyword 'yu' in their name</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-select-code"><a class="link" href="#code-select-code">F.3.3. <code>select</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selects the person identified by the index number used in the displayed person list.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisite: the displayed person lists is not empty. Use <code>list</code> command to display the current list of persons or use <code>find</code> to create a custom filter of the list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: Selects the 1st person in the list</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-find_group-code-strong-unexpected-results-todo-bug-fix-strong"><a class="link" href="#code-find_group-code-strong-unexpected-results-todo-bug-fix-strong">F.3.4. <code>find_group</code> <strong>unexpected results; TODO: bug fix</strong></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find groups whose names contain any of the given keywords</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: `find_group `<br>
+Expected:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-view_group-code"><a class="link" href="#code-view_group-code">F.3.5. <code>view_group</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>shows a list of all persons in a group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>view_group n/happyfriends</code><br>
+Expected: shows a list of all persons in the group "happyfriends"</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-view_slots_all-code"><a class="link" href="#code-view_slots_all-code">F.3.6. <code>view_slots_all</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List all of the available time slots in a group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>view_slots_all n/happyfriends</code><br>
+Expected: output list of all available time slots</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-view_slots_ranked-code"><a class="link" href="#code-view_slots_ranked-code">F.3.7. <code>view_slots_ranked</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List all time slots of a group in descending order of availability with a minimum number of people available required</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>view_slots_ranked n/happyfriends num/1</code><br>
+Expected: output list of all available time slots with at least 1 person available; if any</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-and-edit-commands"><a class="link" href="#add-and-edit-commands">F.4. Add and Edit Commands</a></h3>
+<div class="paragraph">
+<p>These commands can only be used if the user is logged in.</p>
+</div>
+<div class="paragraph">
+<p>Prerequisites: login with the following command: <code>login u/admin pw/adminPassword</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Commands related to Person</strong></p>
+</div>
+<div class="sect3">
+<h4 id="code-add-code"><a class="link" href="#code-add-code">F.4.1. <code>add</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adds a person to NUS Hangs application</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add n/Johnathon p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code><br>
+Expected: Adds a new person with the supplied details into the application</p>
+</li>
+<li>
+<p>Test case: <code>add n/Johnathon p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code><br>
+Expected: Since the person already exist, we expect to see the following error message: "This person already exists in the address book"</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-edit-code"><a class="link" href="#code-edit-code">F.4.2. <code>edit</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edits an existing person in the application based on the given index.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>edit 1 p/91234567</code><br>
+Expected: Changes the phone number of the first person to 91234567</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-delete-code"><a class="link" href="#code-delete-code">F.4.3. <code>delete</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deletes the specified person in the application</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
-</li>
-<li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
-</li>
-<li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+Expected: Deletes the 1st person in the list; if any</p>
 </li>
 </ol>
 </div>
@@ -2939,8 +3197,222 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p><strong>Commands related to Time Table</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-add_timetable-code"><a class="link" href="#code-add_timetable-code">F.4.4. <code>add_timetable</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adds timetable to person specified by the index</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisite: User to download timetable template first using <code>download_timetable [index]</code>; where index is the index number of the person whose timetable you are trying to add. This template serves as an easy way to update the timetable of the user.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case:<br>
+<code>download_timetable 1</code><br>
+<code>add_timetable 1</code><br>
+Expected: adds the timetable to person 1</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-edit_timetable-code"><a class="link" href="#code-edit_timetable-code">F.4.5. <code>edit_timetable</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edits a timetable timeslot of the timetable from the person specified by the INDEX.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>edit_timetable 1 day/wednesday timing/0900 m/Work on CS2103</code><br>
+Expected: Change the time table of person 1 on Wednesday, 0900 to "Work on CS2103"</p>
+</li>
+<li>
+<p>Test case: <code>edit_timetable 1 day/wednesday timing/0900 m/</code><br>
+Expected: Change the time table of person 1 on Wednesday, 0900 to an empty slot; i.e. free slot</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-download_timetable-code"><a class="link" href="#code-download_timetable-code">F.4.6. <code>download_timetable</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download a timetable from the person specified by the <code>INDEX</code> to the stored folder from the person specified by the <code>INDEX</code> as a csv file</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>download_timetable 1</code><br>
+Expected: creation of a .csv file in the respective folder</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-delete_timetable-code"><a class="link" href="#code-delete_timetable-code">F.4.7. <code>delete_timetable</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete csv file of the timetable from stored location from the person specified by the <code>INDEX</code> and adds a default timetable to the person specified by the <code>INDEX</code>.Resets the timetable of the person if there is no timetable in the stored location from the person specified by the <code>INDEX</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>delete_timetable 1</code><br>
+Expected: Deletes the time table of the 1st person in the list</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Commands related to Group</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-add_group-code"><a class="link" href="#code-add_group-code">F.4.8. <code>add_group</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adds a group to the application</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add_group n/Happy Friends d/a group of happy friends</code><br>
+Expected: New group is added and displayed on the list</p>
+</li>
+<li>
+<p>Test case: <code>add_group n/Happy Friends</code><br>
+Expected: Group is not added as it already exist</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-edit_group-code"><a class="link" href="#code-edit_group-code">F.4.9. <code>edit_group</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edit a group’s details. <code>OLDGROUPNAME</code> must be entered. There must be at least 1 field non-empty.
+If field is empty, system assumes that the field remains unedited.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisite: The target group exist in the list of groups.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>edit_group Happy Friends n/Sad Friends d/sad because of cs2103</code><br>
+Expected: Change the group "Happy Friends" into "Sad Friends" with the new group description</p>
+</li>
+<li>
+<p>Test case: <code>add_group n/New Group</code><br>
+<code>edit_group New Group n/Sad Friends d/This won&#8217;t work</code><br>
+Expected: The edit won&#8217;t execute as the supplied new group name is already in use.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-delete_group-code"><a class="link" href="#code-delete_group-code">F.4.10. <code>delete_group</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a group in the application by group name</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>delete_group n/Sad Friends</code><br>
+Expected: Group successfully deleted</p>
+</li>
+<li>
+<p>Test case: <code>delete_group n/Sad Friends</code><br>
+Expected: Group does not exist, hence could not be deleted</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-register-code"><a class="link" href="#code-register-code">F.4.11. <code>register</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adds a person using the person index to a group if group exists</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add_group n/CS2103 Dry Run</code><br>
+<code>register 1 n/CS2103 Dry Run</code><br>
+Expected: 1st person in the list successfully added into the group.
+<code>register 2 n/CS2103 Dry Run</code><br>
+Expected: 2nd person in the list successfully added into the group.
+<code>register 1 n/CS2103 Dry Run</code><br>
+Expected: Since the person already exist in the group, it will not be added again.
+<code>register 1 n/CS2103 Dry Runs</code><br>
+Expected: As there is a typo in the group name, the person will not be added; unless the mistyped group does exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-delete_member-code"><a class="link" href="#code-delete_member-code">F.4.12. <code>delete_member</code></a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a person from a group using person index displayed with view_group</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisite: view the details of any group in the list. For example, <code>view_group n/CS2103 Dry Run</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>delete_member 1 n/CS2103 Dry Run</code><br>
+Expected: 1st member in the group is deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:16:01 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 01:08:15 UTC</div></div></div></body></html>
