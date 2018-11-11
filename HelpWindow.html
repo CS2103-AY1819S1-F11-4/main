@@ -49,7 +49,7 @@
 <li><a href="#find_group">7.3. Locating group by name: <code>find_group</code></a></li>
 <li><a href="#deleting-a-group-code-delete_group-code">7.4. Deleting a group : <code>delete_group</code></a></li>
 <li><a href="#add-a-person-to-group-code-register-code">7.5. Add a person to group : <code>register</code></a></li>
-<li><a href="#view_group">7.6. List all persons of a group : <code>view_group</code></a></li>
+<li><a href="#list-all-persons-of-a-group-code-view_group-code">7.6. List all persons of a group : <code>view_group</code></a></li>
 <li><a href="#delete-a-person-from-group-code-delete_member-code">7.7. Delete a person from group : <code>delete_member</code></a></li>
 </ul>
 </li>
@@ -133,7 +133,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><a href="#find_group">Section 7.3, &#8220;Locating group by name: <code>find_group</code>&#8221;</a></p>
 </li>
 <li>
-<p><a href="#view_group">Section 7.6, &#8220;List all persons of a group : <code>view_group</code>&#8221;</a></p>
+<p><a href="#view_group">[view_group]</a></p>
 </li>
 <li>
 <p><a href="#view_slots_all">Section 8.1, &#8220;List all time slots of a group at which everyone is available : <code>view_slots_all</code>&#8221;</a></p>
@@ -1098,25 +1098,22 @@ Format: <code>register PERSON_INDEX n/GROUP_NAME</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Examples: (Adds the first person in the displayed person panel to the group happyfriends)</p>
 </div>
 <div class="paragraph">
 <p><code>list</code><br></p>
 </div>
 <div class="paragraph">
-<p>`register 1 n/happyfriends `</p>
-</div>
-<div class="paragraph">
-<p>(Adds the first person in the displayed person panel to the group happyfriends)</p>
+<p><code>register 1 n/happyfriends</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view_group"><a class="link" href="#view_group">7.6. List all persons of a group : <code>view_group</code></a></h3>
+<h3 id="list-all-persons-of-a-group-code-view_group-code"><a class="link" href="#list-all-persons-of-a-group-code-view_group-code">7.6. List all persons of a group : <code>view_group</code></a></h3>
 <div class="paragraph">
 <p>Short form/Alias: <code>vg</code></p>
 </div>
 <div class="paragraph">
-<p>shows a list of all persons in a group<br>
+<p>Displays a list of all persons in a group<br>
 Format: <code>view_group n/GROUP_NAME</code></p>
 </div>
 <div class="sidebarblock">
@@ -1131,7 +1128,7 @@ Format: <code>view_group n/GROUP_NAME</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Examples: (lists the persons added to group happyfriends in the displayed person list)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1139,9 +1136,6 @@ Format: <code>view_group n/GROUP_NAME</code></p>
 <p>` view_group n/happyfriends`</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>(lists the person added to group happyfriends in the displayed person list)</p>
 </div>
 </div>
 <div class="sect2">
@@ -1153,22 +1147,18 @@ Format: <code>view_group n/GROUP_NAME</code></p>
 <p>Delete a person from a group using person index displayed with <code>view_group</code>.<br>
 Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>view_group</code> command should be performed before the <code>delete_member</code> command.</p>
+<p><strong>Remember to <code>view_group</code> before using register command.</strong></p>
 </li>
 <li>
 <p>The PERSON_INDEX is the index of the displayed person list AFTER <code>view_group</code> command is performed.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Examples: (deletes the 1st person displayed in <code>view_group</code> command.)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1176,8 +1166,7 @@ Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
 <p><code>view_group n/happyfriends</code></p>
 </li>
 <li>
-<p><code>delete_member 1 n/happyfriends</code>
-(deletes the 1st person displayed in <code>view_group</code> command.)</p>
+<p><code>delete_member 1 n/happyfriends</code></p>
 </li>
 </ul>
 </div>
@@ -1498,4 +1487,4 @@ e.g. <code>login u/user pw/strongpass</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:21:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:27:11 UTC</div></div></div></body></html>
