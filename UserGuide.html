@@ -54,17 +54,17 @@
 <ul class="sectlevel2">
 <li><a href="#adding-a-group-code-add_group-code-short-form-alias-code-ag-code">8.1. Adding a group: <code>add_group</code> (Short form/Alias: <code>ag</code>)</a></li>
 <li><a href="#editing-a-group-code-edit_group-code-short-form-alias-code-eg-code">8.2. Editing a group : <code>edit_group</code> (Short form/Alias: <code>eg</code>)</a></li>
-<li><a href="#locating-group-by-name-code-find_group-code-short-form-alias-code-fg-code">8.3. Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)</a></li>
+<li><a href="#find_group">8.3. Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)</a></li>
 <li><a href="#deleting-a-group-code-delete_group-code-short-form-alias-code-dg-code">8.4. Deleting a group : <code>delete_group</code> (Short form/Alias: <code>dg</code>)</a></li>
 <li><a href="#add-a-person-to-group-code-register-code-short-form-alias-code-r-code">8.5. Add a person to group : <code>register</code> (Short form/Alias: <code>r</code>)</a></li>
-<li><a href="#list-all-persons-of-a-group-code-view_group-code-short-form-alias-code-vg-code">8.6. List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)</a></li>
+<li><a href="#view_group">8.6. List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)</a></li>
 <li><a href="#delete-a-person-from-group-code-delete_member-code-short-form-alias-code-dm-code">8.7. Delete a person from group : <code>delete_member</code> (Short form/Alias: <code>dm</code>)</a></li>
 </ul>
 </li>
 <li><a href="#time-slots-nigel">9. Time slots (Nigel)</a>
 <ul class="sectlevel2">
 <li><a href="#view_slots_all">9.1. List all time slots of a group at which everyone is available : <code>view_slots_all</code></a></li>
-<li><a href="#list-all-time-slots-of-a-group-in-descending-order-of-availability-with-a-minimum-number-of-people-available-required-code-view_slots_ranked-code">9.2. List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code></a></li>
+<li><a href="#view_slots_ranked">9.2. List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">10. FAQ</a></li>
@@ -127,16 +127,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><a href="#select">Section 6.7, &#8220;Selecting a person : <code>select</code>&#8221;</a></p>
 </li>
 <li>
-<p><a href="#find_group">[find_group]</a></p>
+<p><a href="#find_group">Section 8.3, &#8220;Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)&#8221;</a></p>
 </li>
 <li>
-<p><a href="#view_group">[view_group]</a></p>
+<p><a href="#view_group">Section 8.6, &#8220;List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)&#8221;</a></p>
 </li>
 <li>
 <p><a href="#view_slots_all">Section 9.1, &#8220;List all time slots of a group at which everyone is available : <code>view_slots_all</code>&#8221;</a></p>
 </li>
 <li>
-<p><a href="#view_slots_ranked">[view_slots_ranked]</a></p>
+<p><a href="#view_slots_ranked">Section 9.2, &#8220;List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code>&#8221;</a></p>
 </li>
 </ul>
 </div>
@@ -1080,7 +1080,7 @@ Format: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-group-by-name-code-find_group-code-short-form-alias-code-fg-code"><a class="link" href="#locating-group-by-name-code-find_group-code-short-form-alias-code-fg-code">8.3. Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)</a></h3>
+<h3 id="find_group"><a class="link" href="#find_group">8.3. Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)</a></h3>
 <div class="paragraph">
 <p>Find groups whose names contain any of the given keywords<br>
 Format: <code>find_group KEYWORD [MORE_KEYWORDS]</code></p>
@@ -1150,7 +1150,7 @@ Format: <code>register PERSON_INDEX n/GROUP_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-persons-of-a-group-code-view_group-code-short-form-alias-code-vg-code"><a class="link" href="#list-all-persons-of-a-group-code-view_group-code-short-form-alias-code-vg-code">8.6. List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)</a></h3>
+<h3 id="view_group"><a class="link" href="#view_group">8.6. List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)</a></h3>
 <div class="paragraph">
 <p>Displays a list of all persons in a group<br>
 Format: <code>view_group n/GROUP_NAME</code></p>
@@ -1233,8 +1233,8 @@ Format: `view_slots_all n/GROUP_NAME `</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-time-slots-of-a-group-in-descending-order-of-availability-with-a-minimum-number-of-people-available-required-code-view_slots_ranked-code"><a class="link" href="#list-all-time-slots-of-a-group-in-descending-order-of-availability-with-a-minimum-number-of-people-available-required-code-view_slots_ranked-code">9.2. List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code></a></h3>
-<div id="view_slots_ranked" class="paragraph">
+<h3 id="view_slots_ranked"><a class="link" href="#view_slots_ranked">9.2. List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code></a></h3>
+<div class="paragraph">
 <p>Short form/Alias: <code>vr</code>
 List all time slots of a group in descending order of availability with a minimum number of people available required:<br>
 Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
@@ -1376,4 +1376,4 @@ e.g. <code>login u/user pw/strongpass</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 08:48:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 08:52:39 UTC</div></div></div></body></html>
