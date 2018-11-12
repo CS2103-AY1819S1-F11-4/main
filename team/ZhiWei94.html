@@ -90,6 +90,949 @@ This feature allows users to find any persons in Nus Hangs, with improved prefix
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="add"><a class="link" href="#add">Adding a person: <code>add</code> (ZhiWei)</a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>a</code></p>
+</div>
+<div class="paragraph">
+<p>Adds a person to NUS Hangs<br>
+Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Inputs in square brackets are optional</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+</li>
+<li>
+<p><code>add n/Nancy t/friend t/neighbour</code></p>
+</li>
+<li>
+<p><code>add n/James t/friend e/james@example.com t/classmates</code></p>
+</li>
+<li>
+<p><code>a n/Joji t/Singer</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find"><a class="link" href="#find">Finding a person : <code>find</code> (ZhiWei)</a></h3>
+<div class="paragraph">
+<p>Finds all persons in NusHangs, whose contain keywords provided by prefix(es).<br>
+Format: <code>find [n/NAME&#8230;&#8203;] [p/PHONE_NUMBER&#8230;&#8203;] [e/EMAIL&#8230;&#8203;] [a/ADDRESS&#8230;&#8203;] [t/TAG&#8230;&#8203;]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Inputs in square brackets are optional
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords and the prefix does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>All information of a person will be searched, provided by the prefix</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search).<br>
+e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code> and <code>Bo Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/alex</code><br>
+Returns any person having names with <code>alex</code></p>
+</li>
+<li>
+<p><code>find n/Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+<li>
+<p><code>find n/alex bernice t/friends</code><br>
+Returns any person having <code>alex</code> and <code>bernice</code> in name and <code>friends</code> in tags</p>
+</li>
+<li>
+<p><code>find a/tampines p/12345678 87654321</code><br>
+Returns any person having <code>Tampines</code> in address and <code>12345678</code> &amp; <code>87654321</code> in phone</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>ds</code></p>
+</div>
+<div class="paragraph">
+<p>Deletes the specified person from the NUS Hangs.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The timetable of the person will be deleted from the stored folder of the person.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2</code><br>
+Deletes the 2nd person in the NUS Hangs.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete 1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="select"><a class="link" href="#select">Selecting a person : <code>select</code></a></h3>
+<div class="paragraph">
+<p>Selects the person identified by the index number used in the displayed person list.<br>
+Format: <code>select INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>select 2</code><br>
+Selects the 2nd person in NUS Hangs.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>select 1</code><br>
+Selects the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">Listing entered commands : <code>history</code></a></h3>
+<div class="paragraph">
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<div class="paragraph">
+<p>Restores the NUS Hangs to the state before the previous <em>undoable</em> command was executed.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Undoable commands: those commands that modify the NUS Hangs&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>list</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+</li>
+<li>
+<p><code>select 1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command.<br>
+Format: <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">Clearing all entries : <code>clear</code></a></h3>
+<div class="paragraph">
+<p>Clears all entries from the NUS Hangs.<br>
+Format: <code>clear</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>clear</code> does not delete timetable in the stored folder of the person.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="timetable-wen-kai"><a class="link" href="#timetable-wen-kai">Timetable(Wen Kai)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="adding-a-timetable-code-add_timetable-code"><a class="link" href="#adding-a-timetable-code-add_timetable-code">Adding a timetable: <code>add_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>at</code></p>
+</div>
+<div class="paragraph">
+<p>User to download timetable template first before using download_timetable INDEX and change csv at the location.<br>
+Reload page by clicking on another person and then click on the person again<br>
+Or right click on timetable and select the reload page option(Not working).</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>add_timetable INDEX [fl/FILE_LOCATION]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Time zone used is Singapore (GMT+8)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example (user does not provide a file path):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1</code></p>
+</li>
+<li>
+<p>add_timetable will add timetable from the given csv file from the person specified by the <code>INDEX</code> from file location if file location is present. If not, NUSHangs will throw an error message if the file cannot be found from the given (typed) file path</p>
+</li>
+<li>
+<p>Will not be able to add if timetable is not present in the stored location of person specified by <code>INDEX</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example (user provides a file path):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
+</li>
+<li>
+<p>FOR WINDOWS:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable fl/C:\Users\timetable\timetable.csv</code> (absolute pathing) or</p>
+</li>
+<li>
+<p><code>add_timetable fl/timetable.csv</code> (relative pathing - if you save the .csv file in the same directory as the .jar file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>FOR MAC:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable 1 fl//FILEPATH</code> (absolute pathing - note the double slashes) or</p>
+</li>
+<li>
+<p><code>add_timetable 1 fl/timetable.csv</code> (relative pathing).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>add_timetable will add timetable from the given csv file.</p>
+</li>
+<li>
+<p>the first row and first column should be left alone.</p>
+</li>
+<li>
+<p>the top left corner entry can be edited (the blank space at the top of Monday in the first column).</p>
+</li>
+<li>
+<p>can only edit in given rows and columns of the timetable.</p>
+</li>
+<li>
+<p>any invalid timetable will be ignored.</p>
+</li>
+<li>
+<p>example of correctly formatted timetable is given below</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/add_timetable_fl.png" alt="add timetable fl" width="700">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-timetable-code-edit_timetable-code"><a class="link" href="#editing-a-timetable-code-edit_timetable-code">Editing a timetable: <code>edit_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>et</code></p>
+</div>
+<div class="paragraph">
+<p>Edits a timetable timeslot of the timetable from the person specified by the <code>INDEX</code>.<br>
+Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>timings are in 24h format from 0800 to 2300.</p>
+</li>
+<li>
+<p>timings are start time of the event. Eg. if timetable shows 0800, it means the event is from 0800 to 0900.</p>
+</li>
+<li>
+<p>Existing values will be overwritten by the input details.</p>
+</li>
+<li>
+<p>days are days of a week in <strong>full name(case insensitive)</strong> from Monday to Friday.</p>
+</li>
+<li>
+<p>edit the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>can only edit 1 hour timeslot at a time.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Time zone used is Singapore (GMT+8)</p>
+</li>
+<li>
+<p>DETAILS cannot be empty.</p>
+</li>
+<li>
+<p>If no DETAILS is inputted, the value will be deleted at the timeslot</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit_timetable 1 day/wednesday timing/0900 m/do cs2103</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example(User clear event at timeslot):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit_timetable 1 day/wednesday timing/0900</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="download-timetable-code-download_timetable-code"><a class="link" href="#download-timetable-code-download_timetable-code">Download timetable : <code>download_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dlt</code></p>
+</div>
+<div class="paragraph">
+<p>Download a timetable from the person specified by the <code>INDEX</code> to the stored folder from the person specified by the <code>INDEX</code> as a csv file. <br>
+Format: `download_timetable INDEX `</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Download the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Will not download if there is a file with same filename in the folder as the filename of the timetable from the person specified by the <code>INDEX</code>.</p>
+</li>
+<li>
+<p>Will not download if there is no such folder to download the timetable csv file given by the file location from the person specified by the <code>INDEX</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>download_timetable 1</code><br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-timetable-code-delete_timetable-code"><a class="link" href="#deleting-a-timetable-code-delete_timetable-code">Deleting a timetable : <code>delete_timetable</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>dt</code></p>
+</div>
+<div class="paragraph">
+<p>delete csv file of the timetable from stored location from the person specified by the <code>INDEX</code> and adds a default timetable to the person specified by the <code>INDEX</code>.Resets the timetable of the person if there is no timetable in the stored location from the person specified by the <code>INDEX</code>.<br>
+Format: <code>delete_timetable INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the timetable at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed timetable list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list_timetable</code><br>
+<code>delete_timetable 2</code><br>
+Deletes the 2nd timetable in NUS Hangs.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete_timetable 1</code><br>
+Deletes the 1st timetable in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="groups-melodies"><a class="link" href="#groups-melodies">Groups (Melodies)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="adding-a-group-code-add_group-code-short-form-alias-code-ag-code"><a class="link" href="#adding-a-group-code-add_group-code-short-form-alias-code-ag-code">Adding a group: <code>add_group</code> (Short form/Alias: <code>ag</code>)</a></h3>
+<div class="paragraph">
+<p>Add a group to the System<br>
+Format: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_group n/happyfriends d/a group of happy friends</code></p>
+</li>
+<li>
+<p>`add_group n/Bestfriends</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-group-code-edit_group-code-short-form-alias-code-eg-code"><a class="link" href="#editing-a-group-code-edit_group-code-short-form-alias-code-eg-code">Editing a group : <code>edit_group</code> (Short form/Alias: <code>eg</code>)</a></h3>
+<div class="paragraph">
+<p>Edit a group&#8217;s details. OLDGROUPNAME must be entered. There must be at least 1 field non-empty. If field is empty, system assumes that the field remains unedited.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit_group OLDGROUPNAME [n/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_group n/happyfriends d/a group of happy friends</code></p>
+</li>
+<li>
+<p><code>edit_group happyfriends n/sadfriends d/sad because of cs2103</code>
+(Changes the name of group from "happyfriends" to "sadfriends" and description)</p>
+</li>
+<li>
+<p><code>edit_group sadfriends d/very very miserable</code> (Changes only description.)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-group-by-name-code-find_group-code-short-form-alias-code-fg-code"><a class="link" href="#locating-group-by-name-code-find_group-code-short-form-alias-code-fg-code">Locating group by name: <code>find_group</code> (Short form/Alias: <code>fg</code>)</a></h3>
+<div class="paragraph">
+<p>Find groups whose names contain any of the given keywords<br>
+Format: <code>find_group KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only the group name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Family</code> will not match <code>Families</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find_group John</code><br>
+Returns <code>john family</code> and <code>John House</code></p>
+</li>
+<li>
+<p><code>find_group Betsy Tim John</code><br>
+Returns any group having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-delete_group-code-short-form-alias-code-dg-code"><a class="link" href="#deleting-a-group-code-delete_group-code-short-form-alias-code-dg-code">Deleting a group : <code>delete_group</code> (Short form/Alias: <code>dg</code>)</a></h3>
+<div class="paragraph">
+<p>Delete a group in the system by name<br>
+Format: <code>delete_group n/GROUPNAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete_group n/happyfriends</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-person-to-group-code-register-code-short-form-alias-code-r-code"><a class="link" href="#add-a-person-to-group-code-register-code-short-form-alias-code-r-code">Add a person to group : <code>register</code> (Short form/Alias: <code>r</code>)</a></h3>
+<div class="paragraph">
+<p>Adds a person using the person index to a group if group exists<br>
+Format: <code>register PERSON_INDEX n/GROUP_NAME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Remember to <code>list</code> before using register command.</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples: (Adds the first person in the displayed person panel to the group happyfriends)</p>
+</div>
+<div class="paragraph">
+<p><code>list</code><br>
+<code>register 1 n/happyfriends</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-persons-of-a-group-code-view_group-code-short-form-alias-code-vg-code"><a class="link" href="#list-all-persons-of-a-group-code-view_group-code-short-form-alias-code-vg-code">List all persons of a group : <code>view_group</code> (Short form/Alias: <code>vg</code>)</a></h3>
+<div class="paragraph">
+<p>Displays a list of all persons in a group<br>
+Format: <code>view_group n/GROUP_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples: (lists the persons added to group happyfriends in the displayed person list)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>` view_group n/happyfriends`</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-a-person-from-group-code-delete_member-code-short-form-alias-code-dm-code"><a class="link" href="#delete-a-person-from-group-code-delete_member-code-short-form-alias-code-dm-code">Delete a person from group : <code>delete_member</code> (Short form/Alias: <code>dm</code>)</a></h3>
+<div class="paragraph">
+<p>Delete a person from a group using person index displayed with <code>view_group</code>.<br>
+Format: <code>delete_member PERSON_INDEX n/GROUP_NAME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Remember to <code>view_group</code> before using register command.</strong></p>
+</li>
+<li>
+<p>The PERSON_INDEX is the index of the displayed person list AFTER <code>view_group</code> command is performed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples: (deletes the 1st person displayed in <code>view_group</code> command.)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>view_group n/happyfriends</code></p>
+</li>
+<li>
+<p><code>delete_member 1 n/happyfriends</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="time-slots-nigel"><a class="link" href="#time-slots-nigel">Time slots (Nigel)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="view_slots_all"><a class="link" href="#view_slots_all">List all time slots of a group at which everyone is available : <code>view_slots_all</code></a></h3>
+<div class="paragraph">
+<p>Short form/Alias: <code>va</code></p>
+</div>
+<div class="paragraph">
+<p>List all of the available time slots in a group<br>
+Format: `view_slots_all n/GROUP_NAME `</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>List all time slots in a group at which all person in the group is available at the specified <code>GROUPNAME</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>view_slots_all n/happyfriends</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-time-slots-of-a-group-in-descending-order-of-availability-with-a-minimum-number-of-people-available-required-code-view_slots_ranked-code"><a class="link" href="#list-all-time-slots-of-a-group-in-descending-order-of-availability-with-a-minimum-number-of-people-available-required-code-view_slots_ranked-code">List all time slots of a group in descending order of availability with a minimum number of people available required: <code>view_slots_ranked</code></a></h3>
+<div id="view_slots_ranked" class="paragraph">
+<p>Short form/Alias: <code>vr</code>
+List all time slots of a group in descending order of availability with a minimum number of people available required:<br>
+Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>List all time slots of a group in descending order of availability at the specified <code>GROUPNAME</code> with a minimum number of people available required</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>view_slots_ranked n/happyfriends num/4</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUS Hangs folder.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>add</strong>: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
+e.g. <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><strong>edit</strong>: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [fl/STORED_LOCATION] [t/TAG]…</code><br>
+e.g. <code>edit 1 p/91234567 e/johndoe@example.com</code></p>
+</li>
+<li>
+<p><strong>find</strong>: <code>find [n/NAME…] [p/PHONE_NUMBER…] [e/EMAIL…] [a/ADDRESS…] [t/TAG…]</code><br>
+e.g. <code>find a/tampines p/12345678 87654321</code></p>
+</li>
+<li>
+<p><strong>delete</strong>: <code>delete INDEX</code><br>
+e.g. <code>delete 1</code></p>
+</li>
+<li>
+<p><strong>list</strong>: Listing all persons<br>
+eg. <code>list</code></p>
+</li>
+<li>
+<p><strong>list PERSON_INDEX</strong>: List all the groups the person is in<br>
+e.g. <code>list 1</code></p>
+</li>
+<li>
+<p><strong>undo</strong></p>
+</li>
+<li>
+<p><strong>redo</strong></p>
+</li>
+<li>
+<p><strong>history</strong>: Lists all the commands that you have entered in reverse chronological order.</p>
+</li>
+<li>
+<p><strong>add_timetable</strong>: <code>add_timetable INDEX [fl/FILE_LOCATION]</code><br>
+e.g. <code>add_timetable 1 fl/C:\Users\timetable\timetable.csv</code></p>
+</li>
+<li>
+<p><strong>edit_timetable</strong>: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code><br>
+e.g. <code>edit_timetable 1 day/wednesday timing/1800 m/do cs2103</code></p>
+</li>
+<li>
+<p><strong>download_timetable</strong> : <code>download_timetable INDEX</code><br>
+e.g. <code>download_timetable 1</code></p>
+</li>
+<li>
+<p><strong>delete_timetable</strong> : <code>delete_timetable INDEX</code><br>
+e.g. <code>delete_timetable 3</code></p>
+</li>
+<li>
+<p><strong>add_group</strong>: <code>add_group n/GROUPNAME [d/GROUPDESCRIPTION]`</code><br>
+e.g. <code>add_group n/happyfriends d/a group of happy friends</code></p>
+</li>
+<li>
+<p><strong>edit_group</strong> : <code>edit_group OLDGROUPNAME [n/NEWGROUPNAME] [d/NEWGROUPDESCRIPTION]</code><br>
+e.g. <code>edit_group happyfriends n/sadfriends d/sad because of cs2103</code></p>
+</li>
+<li>
+<p><strong>find_group</strong> : <code>find_group KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>find_group Family Friends</code></p>
+</li>
+<li>
+<p><strong>delete_group</strong> : <code>delete n/GROUPNAMR</code><br>
+e.g. <code>delete_group Family</code></p>
+</li>
+<li>
+<p><strong>view_group</strong> : View a group&#8217;s members <code>view_group n/GROUPNAME</code>+
+e.g. <code>view_group Family</code></p>
+</li>
+<li>
+<p><strong>register</strong> <code>register PERSON_INDEX n/GROUP_NAME</code><br>
+e.g. <code>register 1 n/Family</code></p>
+</li>
+<li>
+<p><strong>delete_member</strong>: Always use view_group before doing delete_member<br>
+<code>delete_member PERSON_INDEX n/GROUP_NAME</code><br>
+e.g. <code>view_group n/Family</code><br>
+<code>delete_member 1 n/Family</code></p>
+</li>
+<li>
+<p><strong>view_slots_all</strong>: <code>view_slots_all n/GROUP_NAME</code></p>
+</li>
+<li>
+<p><strong>view_slots_ranked</strong>: <code>view_slots_ranked n/GROUP_NAME</code></p>
+</li>
+<li>
+<p><strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>create u/user pw/strongpass</code></p>
+</li>
+<li>
+<p><strong>login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>login u/user pw/strongpass</code></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -105,5 +1048,91 @@ This feature allows users to find any persons in Nus Hangs, with improved prefix
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="person-feature"><a class="link" href="#person-feature">Person Feature</a></h3>
+<div class="paragraph">
+<p>The 'Person' class extends the <code>Entity</code> abstract class and it is contained within <code>Model</code>.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 08:13:29 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p><code>Person</code> feature make use of <code>Timetable</code> and <code>Group</code> class to assign respective information to each instance of a person.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The current person implementation are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add</code>&#8201;&#8212;&#8201;add any person with the choice of adding address, phone, email and tags</p>
+</li>
+<li>
+<p><code>find</code>&#8201;&#8212;&#8201;finds all persons in NusHangs, whose contain keywords provided by prefix(es)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is the Sequence Diagram for interactions within the Logic component for the execute("find n/alex") API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindSequence.png" alt="FindSequence" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows how 'find' feature works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindActivity.png" alt="FindActivity" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-should-each-specific-code-find-code-feature-work"><a class="link" href="#aspect-how-should-each-specific-code-find-code-feature-work">Aspect: How should each specific <code>find</code> feature work</a></h5>
+<div class="paragraph">
+<p><strong>Alternative 1 (Current Choice) :</strong> Use prefixes for specific search (e.g. find n/alex bernice t/friends)</p>
+</div>
+<div class="paragraph">
+<p>Pros: Higher flexibility. Greater control of search range.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Harder to implement.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2 :</strong> Create a class for each information (e.g. find_address)</p>
+</div>
+<div class="paragraph">
+<p>Pros: Easy to implement, with specific search focus.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Repetitive code base with less flexibility.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-should-code-add-code-feature-work"><a class="link" href="#aspect-how-should-code-add-code-feature-work">Aspect: How should <code>add</code> feature work</a></h5>
+<div class="paragraph">
+<p><strong>Alternative 1 (Current Choice) :</strong> Allow optional prefix (e.g. add n/alex t/friends)</p>
+</div>
+<div class="paragraph">
+<p>Pros: Higher flexibility. Allow users to gain greater control over particulars.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Harder to implement.</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2 :</strong> Only name input is required (e.g. add alex)</p>
+</div>
+<div class="paragraph">
+<p>Pros: Simple command for users.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Unable to utilize or classify information when needed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 08:30:45 UTC</div></div></div></body></html>
