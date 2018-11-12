@@ -32,9 +32,8 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#timetable-feature">3.1. Timetable Feature</a></li>
-<li><a href="#security-mechanism">3.2. Security Mechanism</a></li>
-<li><a href="#group-feature">3.3. Group Feature</a></li>
-<li><a href="#person-feature">3.4. Person Feature</a></li>
+<li><a href="#group-feature">3.2. Group Feature</a></li>
+<li><a href="#person-feature">3.3. Person Feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -772,7 +771,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>Pros: Faster Time efficiency because using 1 for loops to fill the Matrix with the data. Able to use functions in ArrayList</p>
 </li>
 <li>
-<p>Cons: Harder for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. Less intuition to access entries of the matrix (matrix.get(i).get(j)).</p>
+<p>Cons: Harder for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. Less intuition to access entries of the matrix (matrix.get(i).get(j)).
+=== Security Mechanism</p>
 </li>
 </ul>
 </div>
@@ -781,11 +781,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="security-mechanism"><a class="link" href="#security-mechanism">3.2. Security Mechanism</a></h3>
 <div class="sect3">
-<h4 id="reason-for-implementation-2"><a class="link" href="#reason-for-implementation-2">3.2.1. Reason for Implementation</a></h4>
+<h4 id="reason-for-implementation-2"><a class="link" href="#reason-for-implementation-2">3.1.5. Reason for Implementation</a></h4>
 <div class="paragraph">
 <p>In a typical interest group setting, there are two main stakeholders. The (1) committee members whom organizes events and the (2) group members whom participates in the event. In this context, these two stakeholders are the main users of NUS Hangs.</p>
 </div>
@@ -845,7 +842,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.2. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.1.6. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="strong-account-creation-strong"><a class="link" href="#strong-account-creation-strong"><strong>Account Creation</strong></a></h5>
 <div class="paragraph">
@@ -917,7 +914,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.3. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.1.7. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect: Implementation of UserAccountStorage</strong></p>
 </div>
@@ -983,7 +980,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect3">
-<h4 id="limitations-version-1-4"><a class="link" href="#limitations-version-1-4">3.2.4. Limitations (version 1.4)</a></h4>
+<h4 id="limitations-version-1-4"><a class="link" href="#limitations-version-1-4">3.1.8. Limitations (version 1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Account Credentials does not persist</strong></p>
 </div>
@@ -999,7 +996,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect2">
-<h3 id="group-feature"><a class="link" href="#group-feature">3.3. Group Feature</a></h3>
+<h3 id="group-feature"><a class="link" href="#group-feature">3.2. Group Feature</a></h3>
 <div class="paragraph">
 <p>The <code>Group</code> class extends the <code>Entity</code> abstract class just like a <code>Person</code> class does. An <code>Entity</code> contains an abstract method <code>isSame</code> that is necessary for the class to be used in <code>UniqueList&lt;T extends Entity&gt;</code>. <code>Group</code> class is an immutable class that is contained inside <code>Model</code>.</p>
 </div>
@@ -1019,7 +1016,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 <p><code>Group</code> features also updates the Group Panel inside the <code>UI</code> using a predicate.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current group commands added are:</p>
 </div>
@@ -1056,7 +1053,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect3">
-<h4 id="an-example-deletegroupcommand"><a class="link" href="#an-example-deletegroupcommand">3.3.2. An Example: DeleteGroupCommand</a></h4>
+<h4 id="an-example-deletegroupcommand"><a class="link" href="#an-example-deletegroupcommand">3.2.2. An Example: DeleteGroupCommand</a></h4>
 <div class="paragraph">
 <p>The DeleteGroupCommand is a good example of how Group and Person classes are interacting (dependent and associated with each other). An example usage scenario of how <code>delete_group</code> behaves at each stop is explained below.</p>
 </div>
@@ -1109,7 +1106,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.3. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.2.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-implement-code-group-code-class"><a class="link" href="#aspect-how-to-implement-code-group-code-class">Aspect: How to implement <code>Group</code> class</a></h5>
 <div class="paragraph">
@@ -1158,7 +1155,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect2">
-<h3 id="person-feature"><a class="link" href="#person-feature">3.4. Person Feature</a></h3>
+<h3 id="person-feature"><a class="link" href="#person-feature">3.3. Person Feature</a></h3>
 <div class="paragraph">
 <p>The 'Person' class extends the <code>Entity</code> abstract class and it is contained within <code>Model</code>.</p>
 </div>
@@ -1166,7 +1163,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 <p><code>Person</code> feature make use of <code>Timetable</code> and <code>Group</code> class to assign respective information to each instance of a person.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current person implementation are:</p>
 </div>
@@ -1198,7 +1195,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-should-each-specific-code-find-code-feature-work"><a class="link" href="#aspect-how-should-each-specific-code-find-code-feature-work">Aspect: How should each specific <code>find</code> feature work</a></h5>
 <div class="paragraph">
@@ -3415,4 +3412,4 @@ Expected: 1st member in the group is deleted.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:29:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:43:28 UTC</div></div></div></body></html>

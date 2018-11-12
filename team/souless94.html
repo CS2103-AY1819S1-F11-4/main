@@ -432,9 +432,164 @@ Deletes the 1st timetable in the results of the <code>find</code> command.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="timetable-feature"><a class="link" href="#timetable-feature">Timetable Feature</a></h3>
+<div class="sect3">
+<h4 id="reason-for-implementation"><a class="link" href="#reason-for-implementation">Reason for implementation</a></h4>
+<div class="paragraph">
+<p>The objective of the <code>add_timetable</code> feature is to to add data entries of a timetable into NUS Hangs. But it is hard to visualise the adding of the entries so we allowed user to add directly all the entries from a csv file. For <code>edit_timetable</code> , it is for User who just want to edit entries without going to find the timetable. For <code>download_timetable</code>, it is to allow the user to share their timetable to their friends.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-to-implement"><a class="link" href="#how-to-implement">How to implement</a></h4>
+<div class="paragraph">
+<p>For <code>add_timetable</code> , we create a <code>timetable</code> class in <code>person</code> first, then we create a <code>timetableData</code> class with method to create a String [][] Matrix from the data from the csv file. Then we create a timetableString to which contains information on the entries about the <code>timetable</code> and store it in the xml file of the person in the addressbook.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The current <code>timetable</code> commands are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_timetable</code>&#8201;&#8212;&#8201;adds a timetable from the csv file to the person.</p>
+</li>
+<li>
+<p><code>delete_timetable</code>&#8201;&#8212;&#8201;delete a timetable from the person and creates a default timetable in person. It will also find the timetable csv file of the person and deletes it.</p>
+</li>
+<li>
+<p><code>edit_timetable</code>&#8201;&#8212;&#8201;edit a timetable timeslot in the person</p>
+</li>
+<li>
+<p><code>download_timetable</code>&#8201;&#8212;&#8201;downloads a timetable into a csv file into a stored folder location from the person.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are handled by the <code>logic</code> component and uses the <code>person</code> in <code>model</code> to do the execution.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an activity diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/timetableworkflow.png" alt="timetableworkflow" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the <code>add_timetable</code> behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application for the first time. The NUS Hangs will initialise the person with the timetable with the details which was stored using Storage.</p>
+</div>
+<div class="paragraph">
+<p>Step 2:  user finds a timetable of first <code>person</code> in the stored location which is called 495011161 timetable.csv. Using this command, User does not need to type in the timetable name. As shown in the diagram below its easy to see what event the person has.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addTimetable-step-2.png" alt="addTimetable step 2" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3: The user executes <code>add_timetable 1</code> to add the timetable of first <code>person</code> in stored folder to NUS hangs. A new <code>timetable</code> will be created containing the data of the <code>timetable</code> of first <code>person</code> in stored folder. The <code>timetable</code> of first <code>person</code> will be replaced by this new <code>timetable</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>timetable</code> is then added to storage as a String which contains all of the data. This is to allow the app to save time in storage.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how <code>add_timetable</code> works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addtimetablediagram.png" alt="addtimetablediagram" width="500">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 :</strong> adds the timetable via a csv file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier for user to visualise and edit his timetable</p>
+</li>
+<li>
+<p>Cons: Hard to implement. No choice other than to edit his timetable from the stored folder defined.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice) :</strong> adds the timetable via a csv file from other locations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier for user to visualise and edit his timetable and allows user a choice on where to edit his timetable.</p>
+</li>
+<li>
+<p>Cons: Hard to implement, and user has to know how to get file location of a file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> User knows how to edit via the xml file of the person.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement</p>
+</li>
+<li>
+<p>Cons: User must know how to edit via the xml file of the person, and harder for User to visualise.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-add_timetable-commands"><a class="link" href="#aspect-data-structure-to-support-the-add_timetable-commands">Aspect: Data structure to support the add_timetable commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use a String [][] Matrix to store entries of the timetable.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. Better intuition to access entries of the matrix (matrix[i][j]) Which makes <code>edit_timetable</code> easier to implement.</p>
+</li>
+<li>
+<p>Cons: Slower Time efficiency because using 2 for loops to fill the Matrix with the data. Unable to use functions in ArrayList.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use ArrayList&lt;ArrayList&lt;String&gt;&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Faster Time efficiency because using 1 for loops to fill the Matrix with the data. Able to use functions in ArrayList</p>
+</li>
+<li>
+<p>Cons: Harder for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. Less intuition to access entries of the matrix (matrix.get(i).get(j)).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <hr>
 <div class="paragraph">
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:29:49 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:43:28 UTC</div></div></div></body></html>
