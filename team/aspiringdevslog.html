@@ -232,6 +232,8 @@ Format: <code>update_pw c/CURRENT_PASSWORD n/NEW_PASSWORD</code></p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="security-mechanism"><a class="link" href="#security-mechanism">Security Mechanism</a></h3>
 <div class="sect3">
 <h4 id="reason-for-implementation"><a class="link" href="#reason-for-implementation">Reason for Implementation</a></h4>
 <div class="paragraph">
@@ -353,14 +355,36 @@ Format: <code>update_pw c/CURRENT_PASSWORD n/NEW_PASSWORD</code></p>
 <div class="title">Figure 3. Sequence Diagram of Login Command</div>
 </div>
 <div class="paragraph">
-<p>There are four new classes that are added to AddressBook4 in the implementation of account creation:
--	LoginCommandParser: parses input arguments and creates a new LoginCommand object
--	LoginCommand: login to an account of NUS Hangs
--	Accounts: represents an account with username and password fields
--	UserAccountStorage: retrieval and checking of account credentials in a hashmap
-Minor extensions are added to the other existing classes in AddressBook4:
--	AddressBookParser: added the login command keyword for parsing, added a check on login status to control commands execution
--	ParserUtil: added functions to parse username and password</p>
+<p><strong>There are four new classes that are added to AddressBook4 in the implementation of account login:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>LoginCommandParser: parses input arguments and creates a new LoginCommand object</p>
+</li>
+<li>
+<p>LoginCommand: login to an account of NUS Hangs</p>
+</li>
+<li>
+<p>Accounts: represents an account with username and password fields</p>
+</li>
+<li>
+<p>UserAccountStorage: retrieval and checking of account credentials in a hashmap</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Minor extensions are added to the other existing classes in AddressBook4:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AddressBookParser: added the login command keyword for parsing, added a check on login status to control commands execution</p>
+</li>
+<li>
+<p>ParserUtil: added functions to parse username and password</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -443,6 +467,7 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 <div class="paragraph">
 <p>There are no restrictions on password, namely there is no checks to ensure that the passwords are strong. This means that users can use weak passwords or even leave the password field empty to make it easy to log in.</p>
+</div>
 </div>
 </div>
 </div>
@@ -591,4 +616,4 @@ Expected: Account is not created as the username is already in use.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:15:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:26:48 UTC</div></div></div></body></html>
