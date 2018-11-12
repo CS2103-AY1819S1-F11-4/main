@@ -77,7 +77,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Edited the Developer Guide to include the implementation of the time slots methods: <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/250" class="bare">https://github.com/CS2103-AY1819S1-F11-4/main/pull/250</a> [#250]</p>
+<p>Edited the Developer Guide to include the implementation of the time slots methods: <a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/250">#250</a></p>
 </li>
 </ul>
 </div>
@@ -123,6 +123,9 @@ Format: `view_slots_all n/GROUP_NAME `</p>
 <li>
 <p>List all time slots at which all persons in a group is available, for the group with specified`GROUP_NAME`</p>
 </li>
+<li>
+<p>Will indicate accordingly if the input is invalid, if there are no members in the groups and if there are no time slots at which everyone is available.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -153,6 +156,12 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <ul>
 <li>
 <p>List all time slots of a group in descending order of availability, for the group with specified <code>GROUP_NAME</code>, and with a specified 'NUM_REQ' of people available.</p>
+</li>
+<li>
+<p><code>NUM_REQ</code> has to be an unsigned positive integer, but can be larger than the number of members in the group</p>
+</li>
+<li>
+<p>Will indicate accordingly if the input is invalid, if there are no members in the groups and if there are no time slots with at least the required number of people available</p>
 </li>
 </ul>
 </div>
@@ -192,29 +201,45 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The current time slot commands added are:
-* <code>view_slots_all</code>/<code>va</code>&#8201;&#8212;&#8201;lists all time slots at which every member of a specfied group is free at
-* <code>view_slots_ranked/`vr`</code>&#8201;&#8212;&#8201;sorts and lists all time slots in terms of number of members available, for a specified group and specified required minimum number of people</p>
+<p>The current time slot commands added are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>view_slots_all</code>/<code>va</code>&#8201;&#8212;&#8201;lists all time slots at which every member of a specfied group is free at</p>
+</li>
+<li>
+<p><code>view_slots_ranked/`vr`</code>&#8201;&#8212;&#8201;sorts and lists all time slots in terms of number of members available, for a specified group and specified required minimum number of people</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The activity diagram is as follows.</p>
 </div>
-<div class="paragraph">
-<p>image::timeslotactivitydiagram</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/timeslotactivitydiagram" alt="timeslotactivitydiagram" width="800">
+</div>
 </div>
 <div class="paragraph">
 <p>These methods and their parsers are handled in <code>Logic</code>, and compares the <code>Timetable</code> associated with each <code>Person</code> in a specified <code>Group</code> during execution. Given below is the Sequence Diagram illustrating the interactions between the various classes when finding the aforementioned slots.</p>
 </div>
-<div class="paragraph">
-<p>image::timeslotsequencediagram</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/timeslotsequencediagram" alt="timeslotsequencediagram" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-should-time-tables-be-compared-when-view_slots_all-is-executed"><a class="link" href="#aspect-how-should-time-tables-be-compared-when-view_slots_all-is-executed">Aspect: How should time tables be compared when view_slots_all is executed</a></h5>
-<div class="paragraph">
-<p>*Alternative 1 (current choice): Get a 2d boolean array based on the 2d string array data in the <code>Timetable</code> associated with each <code>Person</code> to determine if the <code>Person</code> is free at a particular time slot.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Get a 2d boolean array based on the 2d string array data in the <code>Timetable</code> associated with each <code>Person</code> to determine if the <code>Person</code> is free at a particular time slot.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Pros: The true/false nature of a 2d boolean array is intuitive when determining if a person is free. No strings have to be parsed during the method call, which allows for faster comparisons.</p>
@@ -222,8 +247,12 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <div class="paragraph">
 <p>Cons: It will be harder to implement additional features based on the 2d boolean array as its entries can only be true or false.</p>
 </div>
-<div class="paragraph">
-<p>*Alternative 2: Directly compare the 2d string array of the <code>Timetable</code> class associcated with each <code>Person</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Directly compare the 2d string array of the <code>Timetable</code> class associcated with each <code>Person</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Pros: Less code needed and debugging would be easier. Furthermore, implementation would also be more direct.</p>
@@ -262,8 +291,12 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 </div>
 <div class="sect5">
 <h6 id="aspect-how-should-the-results-be-returned"><a class="link" href="#aspect-how-should-the-results-be-returned">Aspect: How should the results be returned</a></h6>
-<div class="paragraph">
-<p>*Alternative 1 (current choice): Return the results in a form of a string</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Return the results in a form of a string</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Pros: Relatively fast due to stringbuilder and easy to implement.</p>
@@ -271,8 +304,12 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <div class="paragraph">
 <p>Cons: Harder to use and manipulate the results for implementation of other features.</p>
 </div>
-<div class="paragraph">
-<p>*Alternative 2: Return the results in a form of a <code>Timetable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Return the results in a form of a <code>Timetable</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Pros: Can be used in various ways due to the available timetable methods and can also be downloaded as an excel file.</p>
@@ -285,4 +322,4 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:40:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:03:41 UTC</div></div></div></body></html>

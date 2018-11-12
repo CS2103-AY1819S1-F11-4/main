@@ -1224,6 +1224,9 @@ Format: `view_slots_all n/GROUP_NAME `</p>
 <li>
 <p>List all time slots at which all persons in a group is available, for the group with specified`GROUP_NAME`</p>
 </li>
+<li>
+<p>Will indicate accordingly if the input is invalid, if there are no members in the groups and if there are no time slots at which everyone is available.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1254,6 +1257,12 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <ul>
 <li>
 <p>List all time slots of a group in descending order of availability, for the group with specified <code>GROUP_NAME</code>, and with a specified 'NUM_REQ' of people available.</p>
+</li>
+<li>
+<p><code>NUM_REQ</code> has to be an unsigned positive integer, but can be larger than the number of members in the group</p>
+</li>
+<li>
+<p>Will indicate accordingly if the input is invalid, if there are no members in the groups and if there are no time slots with at least the required number of people available</p>
 </li>
 </ul>
 </div>
@@ -1392,4 +1401,4 @@ shows all the time slots where at least 2 persons in the Family group are free.<
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:40:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:03:41 UTC</div></div></div></body></html>
