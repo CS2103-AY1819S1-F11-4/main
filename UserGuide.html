@@ -63,7 +63,7 @@
 <ul class="sectlevel2">
 <li><a href="#create-an-account-code-create-code">9.1. Create an account: <code>create</code></a></li>
 <li><a href="#login-to-an-account-code-login-code">9.2. Login to an account : <code>login</code></a></li>
-<li><a href="#encrypt-timetable-data">9.3. Encrypt timetable data</a></li>
+<li><a href="#encrypt-password">9.3. Encrypt password</a></li>
 <li><a href="#changing-password-code-update_pw-code-coming-in-v2-0">9.4. Changing password: <code>update_pw</code> [coming in v2.0]</a></li>
 </ul>
 </li>
@@ -212,10 +212,10 @@ An example in the context of an interest group: Only committee members should be
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>n/NAME_OF_FRIEND</code>, <code>NAME_OF_FRIEND</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [i/INDEX_OF_TIMETABLE]</code> can be used as <code>n/John Doe i/1</code> or as <code>n/John Doe</code>.</p>
+<p>Items in square brackets are optional e.g <code>n/NAME [i/INDEX]</code> can be used as <code>n/John Doe i/1</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/GROUPNAME INDEX</code>, <code>INDEX n/GROUPNAME</code> is also acceptable.</p>
+<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME INDEX</code>, <code>INDEX n/NAME</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
@@ -488,6 +488,9 @@ Format: <code>delete INDEX</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
+<li>
+<p>The timetable of the person will be deleted from the stored folder of the person.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -655,6 +658,17 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <p>Clears all entries from the NUS Hangs.<br>
 Format: <code>clear</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>clear</code> does not delete timetable in the stored folder of the person.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -689,6 +703,9 @@ Or right click on timetable and select the reload page option(Not working).</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Time zone used is Singapore (GMT+8)</p>
 </li>
 </ul>
 </div>
@@ -805,6 +822,9 @@ Format: <code>edit_timetable INDEX day/DAY timing/TIMING [m/DETAILS]</code></p>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
+<p>Time zone used is Singapore (GMT+8)</p>
+</li>
+<li>
 <p>DETAILS cannot be empty.</p>
 </li>
 <li>
@@ -858,7 +878,7 @@ Format: `download_timetable INDEX `</p>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>Will not download if there is a file with same filename as the filename of the timetable from the person specified by the <code>INDEX</code>.</p>
+<p>Will not download if there is a file with same filename in the folder as the filename of the timetable from the person specified by the <code>INDEX</code>.</p>
 </li>
 <li>
 <p>Will not download if there is no such folder to download the timetable csv file given by the file location from the person specified by the <code>INDEX</code>.</p>
@@ -1215,7 +1235,7 @@ Users are required to login to execute most commands of the NUS Hangs</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypt-timetable-data"><a class="link" href="#encrypt-timetable-data">9.3. Encrypt timetable data</a></h3>
+<h3 id="encrypt-password"><a class="link" href="#encrypt-password">9.3. Encrypt password</a></h3>
 <div class="paragraph">
 <p>Encrypts password so that it will not be stored as plain text.
 This function runs when dealing with user&#8217;s password.</p>
@@ -1353,4 +1373,4 @@ e.g. <code>login u/user pw/strongpass</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:43:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 05:39:07 UTC</div></div></div></body></html>
