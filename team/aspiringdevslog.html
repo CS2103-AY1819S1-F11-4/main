@@ -37,8 +37,7 @@
 </div>
 </li>
 <li>
-<p>Justification: This feature secures the information stored in the application by preventing unauthorised users from manipulating it, while allowing all users to view the data.<br>
-An example of a situation where this would be useful is in the context of an interest group. In an interest group, committee members would need to organize activities while maximizing attendance. In that case, only the committee members should have the rights to add and update the information within the application. After the committee members setup the schedule, members whom are interested would be able to gain read-only access to view the information available. Alternatively, members could also access the application to verify if the information are accurate.</p>
+<p>Justification: This feature secures the information stored in the application by restricting write and modification rights to admins (typically committee members of an interest group), while allowing all users to reading rights to the data.</p>
 </li>
 </ul>
 </div>
@@ -100,7 +99,7 @@ An example of a situation where this would be useful is in the context of an int
 <p>Updated Quick Start portion in User Guide [<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/209/commits/c2ac0183c643fd9621d6e77a781e0d53039444ab">#209</a>]</p>
 </li>
 <li>
-<p>Updated Manual Testing portion in Developer Guide [<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/225/">#225</a>]</p>
+<p>Updated Manual Testing portion in Developer Guide [<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/225">#225</a>]</p>
 </li>
 </ul>
 </div>
@@ -110,7 +109,7 @@ An example of a situation where this would be useful is in the context of an int
 <div class="ulist">
 <ul>
 <li>
-<p>Created Initial Personal Portfolio Pages for all members [<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/197/files">#197</a>]</p>
+<p>Created Initial Personal Portfolio Pages for all members [<a href="https://github.com/CS2103-AY1819S1-F11-4/main/pull/197">#197</a>]</p>
 </li>
 </ul>
 </div>
@@ -135,68 +134,6 @@ An example of a situation where this would be useful is in the context of an int
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The application launch in a state which grant <strong>read-only rights</strong> to the user. Some of the commands that are available in this state includes:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#help">[help]</a></p>
-</li>
-<li>
-<p><a href="#list">[list]</a></p>
-</li>
-<li>
-<p><a href="#find">[find]</a></p>
-</li>
-<li>
-<p><a href="#select">[select]</a></p>
-</li>
-<li>
-<p><a href="#find_group">[find_group]</a></p>
-</li>
-<li>
-<p><a href="#view_group">[view_group]</a></p>
-</li>
-<li>
-<p><a href="#view_slots_all">[view_slots_all]</a></p>
-</li>
-<li>
-<p><a href="#view_slots_ranked">[view_slots_ranked]</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>To make use of functions that add or edit information, the application requires the user to create and login to an account.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The default username is "<strong>admin</strong>" and the default password is "<strong>adminPassword</strong>".<br>
-To prevent unauthorized users from creating an account, <code>create</code> <strong>can only be executed when a user is logged on</strong>.<br>
-An example in the context of an interest group: Only committee members should be allowed to make changes to the data while members are restricted to viewing rights.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#create_an_account_code_create_code">[create_an_account_code_create_code]</a></p>
-</li>
-<li>
-<p><a href="#login_to_an_account_code_login_code">[login_to_an_account_code_login_code]</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -264,7 +201,7 @@ This function runs when dealing with user&#8217;s password.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-password-code-update_pw-coming-in-v2-0-code"><a class="link" href="#changing-password-code-update_pw-coming-in-v2-0-code">Changing password: <code>update_pw `  `[coming in v2.0]</code></a></h3>
+<h3 id="changing-password-code-update_pw-code-coming-in-v2-0"><a class="link" href="#changing-password-code-update_pw-code-coming-in-v2-0">Changing password: <code>update_pw</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Change the user password, requires user to be logged in first.<br>
 Format: <code>update_pw c/CURRENT_PASSWORD n/NEW_PASSWORD</code></p>
@@ -511,169 +448,150 @@ Minor extensions are added to the other existing classes in AddressBook4:
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix A: Instructions for Manual Testing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Given below are instructions to test the app manually.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="use-case-create-an-account"><a class="link" href="#use-case-create-an-account">Use case: Create an Account</a></h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>New user prompted to create an account</p>
+<p>Initial launch</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Download the jar file and copy into an empty folder</p>
 </li>
 <li>
-<p>User enters create account command as prompted</p>
-</li>
-<li>
-<p>System displays account creation success message</p>
+<p>Double-click the jar file<br>
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>2a. User enters a duplicate username (username already in use)</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1.System prompts user to choose a different username</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Use case resumes at step 2</p>
+<li>
+<p>Saving window preferences</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.<br>
+Expected: The most recent window size and location is retained.</p>
+</li>
+</ol>
 </div>
 </li>
-</ul>
+</ol>
 </div>
-<h3 id="use-case-login-to-account" class="discrete">Use case: Login to Account</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
 </div>
+<div class="sect2">
+<h3 id="creating-an-account"><a class="link" href="#creating-an-account">Creating an Account</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User attempts to enter command</p>
+<p>You can use NUS Hangs without creating an account. In that case, you are restricted to the following read-only commands:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>help</code></p>
 </li>
 <li>
-<p>System detects that user is not logged in</p>
+<p><code>list</code></p>
 </li>
 <li>
-<p>System prompts user to either create account or login to existing account</p>
+<p><code>find</code></p>
 </li>
 <li>
-<p>User enters login command</p>
+<p><code>select</code></p>
 </li>
 <li>
-<p>System displays login success message</p>
+<p><code>find_group</code></p>
+</li>
+<li>
+<p><code>view_group</code></p>
+</li>
+<li>
+<p><code>view_slots_all</code></p>
+</li>
+<li>
+<p><code>view_slots_ranked</code></p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1a. System detects that user is not logged in</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1.System prompts user to login</p>
-<div class="paragraph">
-<p>Use case resumes at step 2</p>
-</div>
-</li>
-</ul>
-</div>
 </li>
 <li>
-<p>3a. User does not have an account</p>
-<div class="ulist none">
-<ul class="none">
+<p>Prerequisites: The application is set up such that you have to login in order to create an account. This prevents unauthorized creation of account and manipulation of stored information.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
-<p>3a1.User enters create account command [the continuation of this extension can be found on <strong>create an account</strong> use case]</p>
-<div class="paragraph">
-<p>Use case ends prematurely</p>
-</div>
-</li>
-</ul>
-</div>
+<p>Login with the following command <code>login u/admin pw/adminPassword</code></p>
 </li>
 <li>
-<p>3b. User have an account</p>
-<div class="paragraph">
-<p>Use case resumes at step 4</p>
-</div>
+<p>Create a new account using <code>create u/newuser pw/strongerpassword</code></p>
 </li>
 <li>
-<p>4a. User enters wrong credentials (username and password combination does not match)</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>4a1.System prompts user on login fail and to try again</p>
-<div class="paragraph">
-<p>Use case resumes at step 4</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-reset-password" class="discrete">Use case: reset password</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User enters command to reset password</p>
-</li>
-<li>
-<p>System prompts user to answer the security question</p>
-</li>
-<li>
-<p>After successfully answering the security question, system prompts user to choose a new password</p>
+<p>Login to the new account using <code>login u/newuser pw/strongerpassword</code></p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1a. User enters username that does not exist in the system</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1.System prompts user to enter username again</p>
-<div class="paragraph">
-<p>Use case resumes at step 1.</p>
-</div>
 </li>
-</ul>
+</ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At the current version, user account credentials are <strong>lost</strong> upon closing the application.<br>
+If you restart the application during testing, you are required to create a new account or simply make use of the default admin account provided.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="create-command"><a class="link" href="#create-command">Create command</a></h4>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>create u/newuser pw/pass</code><br>
+Expected: Account is successfully created.</p>
 </li>
 <li>
-<p>2a. User entered wrong security answer</p>
-<div class="ulist none">
-<ul class="none">
+<p>Test case: <code>create u/nopass pw/</code><br>
+Expected: Account is successfully created. The password field is allowed to be blank, although not recommended. This is a way to allow admin to quickly login to the application.</p>
+</li>
 <li>
-<p>2a1.System prompts user to enter security answer again</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
+<p>Test case: <code>create u/ pw/</code><br>
+Expected: Account is successfully created. The username and password fields are both allowed to be blank, although not recommended. This is a way to allow admin to quickly login to the application.</p>
 </li>
-</ul>
-</div>
+<li>
+<p>Test case: <code>create u/admin pw/pass</code><br>
+Expected: Account is not created as the username is already in use.</p>
 </li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 00:21:36 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 00:46:59 UTC</div></div></div></body></html>
