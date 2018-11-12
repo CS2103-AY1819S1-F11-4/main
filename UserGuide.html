@@ -1284,7 +1284,16 @@ Format: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
 <p><strong>help</strong> : <code>help</code></p>
 </li>
 <li>
-<p><strong>add</strong>: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
+<p><strong>login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>login u/admin pw/adminPassword</code><br>
+(<strong>remember to login using admin account in above example before being able to create new accounts/perform other functions!</strong>)</p>
+</li>
+<li>
+<p><strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>create u/user pw/strongpass</code></p>
+</li>
+<li>
+<p><strong>add</strong>: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…</code> <strong>Inputs in square brackets are optional</strong><br>
 e.g. <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
 </li>
 <li>
@@ -1346,11 +1355,11 @@ e.g. <code>find_group Family Friends</code></p>
 </li>
 <li>
 <p><strong>delete_group</strong> : <code>delete n/GROUPNAMR</code><br>
-e.g. <code>delete_group Family</code></p>
+e.g. <code>delete_group n/Family</code></p>
 </li>
 <li>
 <p><strong>view_group</strong> : View a group&#8217;s members <code>view_group n/GROUPNAME</code>+
-e.g. <code>view_group Family</code></p>
+e.g. <code>view_group n/Family</code></p>
 </li>
 <li>
 <p><strong>register</strong> <code>register PERSON_INDEX n/GROUP_NAME</code><br>
@@ -1363,20 +1372,18 @@ e.g. <code>view_group n/Family</code><br>
 <code>delete_member 1 n/Family</code></p>
 </li>
 <li>
-<p><strong>view_slots_all</strong>: <code>view_slots_all n/GROUP_NAME</code></p>
+<p><strong>view_slots_all</strong>: View all common time slots between everyone in the group<br>
+<code>view_slots_all n/GROUP_NAME</code><br>
+e.g. <code>view_slots_all n/Family</code><br>
+shows all the time slots where every person in Family group is free.</p>
 </li>
 <li>
-<p><strong>view_slots_ranked</strong>: <code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code></p>
-</li>
-<li>
-<p><strong>create</strong> : <code>create u/USERNAME pw/PASSWORD</code><br>
-e.g. <code>create u/user pw/strongpass</code></p>
-</li>
-<li>
-<p><strong>login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
-e.g. <code>login u/user pw/strongpass</code></p>
+<p><strong>view_slots_ranked</strong>: View time slots ranked with at least`NUM_REQ` people free on these time slots<br>
+<code>view_slots_ranked n/GROUP_NAME num/NUM_REQ</code><br>
+e.g. <code>view_slots_ranked n/Family num/2</code><br>
+shows all the time slots where at least 2 persons in the Family group are free.</p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:44:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:52:36 UTC</div></div></div></body></html>
