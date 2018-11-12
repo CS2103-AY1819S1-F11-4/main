@@ -1837,7 +1837,7 @@ In excel format</p></td>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>NUS Hangs</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-help" class="discrete">Use case: help</h3>
+<h3 id="use-case-help" class="discrete">Use case: Help</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2077,7 +2077,7 @@ In excel format</p></td>
 </li>
 </ol>
 </div>
-<h3 id="use-case-add-a-timetable" class="discrete">Use case: add a timetable</h3>
+<h3 id="use-case-add-a-timetable" class="discrete">Use case: Add a timetable</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2129,7 +2129,7 @@ In excel format</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-edit-a-timetable" class="discrete">Use case: edit a timetable</h3>
+<h3 id="use-case-edit-a-timetable" class="discrete">Use case: Edit a timetable</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2181,7 +2181,7 @@ In excel format</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-download-a-timetable" class="discrete">Use case: download a timetable</h3>
+<h3 id="use-case-download-a-timetable" class="discrete">Use case: Download a timetable</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2285,26 +2285,23 @@ In excel format</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-check-available-time-slot-of-the-group" class="discrete">Use case: check available time slot of the group</h3>
+<h3 id="use-case-find-time-slots-at-which-every-member-of-a-group-is-available" class="discrete">Use case: Find time slots at which every member of a group is available</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User logins to System and requests help to see available time slots</p>
+<p>User requests help to see time slots at which everyone in the group is available</p>
 </li>
 <li>
-<p>System shows how to find available time slot of the group</p>
+<p>System shows how to find these time slots</p>
 </li>
 <li>
 <p>User enters inputs accordingly</p>
 </li>
 <li>
-<p>System asks if user wants to see the time slots listed in descending order in terms of the number of conflict if there are no available time slots.</p>
-</li>
-<li>
-<p>System shows time slots listed in descending order in terms of the number of conflict</p>
+<p>System lists all of these time slots in ascending order in terms of timing.</p>
 </li>
 </ol>
 </div>
@@ -2327,14 +2324,89 @@ In excel format</p></td>
 </div>
 </li>
 <li>
-<p>4a. Group or Person or both is not in the System.</p>
+<p>4a. There are no members in the specified group</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1.System shows an error message.</p>
+<p>4a1.System indicates that there are no members in the specified group</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. There are no time slots at which every member of the specified group is available at.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1.System indicates that there are no available time slots.
+Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-sort-and-list-all-time-slots-with-a-specified-required-minimum-number-of-people-available" class="discrete">Use case: Sort and list all time slots with a specified required minimum number of people available</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests help to see a sorted list of time slots</p>
+</li>
+<li>
+<p>System shows how to list all time slots in order in terms of number of people available of a specified group, with a specified required minimum number of people.</p>
+</li>
+<li>
+<p>User enters inputs accordingly</p>
+</li>
+<li>
+<p>System lists time slots that fits the requirement, in descending order in terms of number of people available, and then in ascending order in terms of timing.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3a. User enters invalid input.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1.System shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4a. There are no members in the specified group</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1.System indicates that there are no members in the specified group</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. There are no time slots that meets the requirement.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1.System indicates that there are no available time slots.
+Use case ends.</p>
 </li>
 </ul>
 </div>
@@ -2567,7 +2639,7 @@ In excel format</p></td>
 </li>
 </ol>
 </div>
-<h3 id="use-case-add-a-member-to-a-group" class="discrete">Use case: add a member to a group</h3>
+<h3 id="use-case-add-a-member-to-a-group" class="discrete">Use case: Add a member to a group</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2620,7 +2692,7 @@ In excel format</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-delete-a-member-to-a-group" class="discrete">Use case: delete a member to a group</h3>
+<h3 id="use-case-delete-a-member-to-a-group" class="discrete">Use case: Delete a member to a group</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2752,7 +2824,7 @@ In excel format</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-reset-password" class="discrete">Use case: reset password</h3>
+<h3 id="use-case-reset-password" class="discrete">Use case: Reset password</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -3104,7 +3176,7 @@ Expected: shows a list of all persons in the group "happyfriends"</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Test case: <code>view_slots_all n/happyfriends</code><br>
-Expected: output list of all available time slots</p>
+Expected: output list of all time slots at which everyone in the group is available</p>
 </li>
 </ol>
 </div>
@@ -3122,7 +3194,7 @@ Expected: output list of all available time slots</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Test case: <code>view_slots_ranked n/happyfriends num/1</code><br>
-Expected: output list of all available time slots with at least 1 person available; if any</p>
+Expected: output list of all time slots with at least 1 person available, if any, in sorted order</p>
 </li>
 </ol>
 </div>
@@ -3418,4 +3490,4 @@ Expected: 1st member in the group is deleted.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:01:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:15:46 UTC</div></div></div></body></html>
